@@ -1,0 +1,6 @@
+.calendar-container {
+  max-width: 50%; /* Ajusta el ancho según lo necesites */
+  margin: 0; /* Elimina márgenes para alineación precisa */
+  padding: 0; /* Elimina padding para alineación precisa */
+  text-align: left; /* Alinea el contenido a la izquierda */
+}

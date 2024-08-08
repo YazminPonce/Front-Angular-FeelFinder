@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { GaleriaComponent } from './galeria/galeria.component';
@@ -7,14 +7,21 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-
+import { FullCalendarModule } from '@fullcalendar/angular'; // FullCalendar module
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import { CitaPrincipalComponent } from './citas/cita-principal/cita-principal.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CitasDetalleComponent } from './citas/citas-detalle/citas-detalle.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     GaleriaComponent,
     ContactoComponent,
-    LoginComponent
+    LoginComponent,
+    CitaPrincipalComponent,
+    CitasDetalleComponent
 
 
   ],
@@ -22,13 +29,21 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     RouterModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule,
+    ReactiveFormsModule
   ],
   exports: [
     HomeComponent,
     GaleriaComponent,
     ContactoComponent,
-    LoginComponent
+    LoginComponent,
+    CitaPrincipalComponent,
+    CitasDetalleComponent
+
   ]
 })
-export class PrincipalModule { }
+export class PrincipalModule   {
+
+
+}

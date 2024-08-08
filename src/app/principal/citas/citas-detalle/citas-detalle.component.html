@@ -1,0 +1,56 @@
+<div class="container mt-5">
+  <h1 class="mb-4 text-center">Detalles de la Cita</h1>
+
+  <div class="row justify-content-center">
+    <!-- Columna de detalles de la cita -->
+    <div class="col-md-5 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-primary">ID de la cita</h5>
+          <p class="card-text">{{ citaId }}</p>
+
+          <h5 class="card-title text-primary">Paciente</h5>
+          <p class="card-text">Sandra Martinez</p>
+
+          <h5 class="card-title text-primary">Fecha</h5>
+          <p class="card-text">10/03/2024</p>
+
+          <h5 class="card-title text-primary">Hora</h5>
+          <p class="card-text">10:30 PM</p>
+
+          <h5 class="card-title text-primary">Estado de la cita</h5>
+          <p class="card-text">{{ citaEstado }}</p>
+
+          <!-- Botón para regresar al calendario -->
+          <button class="btn btn-primary w-100 mt-3" (click)="goBack()">Volver al Calendario</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna de reprogramación de la cita -->
+    <div *ngIf="citaEstado === 'en espera'" class="col-md-5 d-flex flex-column align-items-start">
+      <button class="btn btn-secondary mb-3" (click)="toggleReprogramar()">
+        {{ showReprogramar ? 'Cancelar Reprogramación' : 'Reprogramar Cita' }}
+      </button>
+
+      <!-- Formulario de reprogramación -->
+      <div *ngIf="showReprogramar" class="card w-100 mt-2 shadow-sm">
+        <div class="card-body">
+          <form [formGroup]="reprogramarForm" (ngSubmit)="reprogramar()">
+            <div class="mb-3">
+              <label for="nuevaFecha" class="form-label">Nueva Fecha:</label>
+              <input id="nuevaFecha" type="date" formControlName="nuevaFecha" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="nuevaHora" class="form-label">Nueva Hora:</label>
+              <input id="nuevaHora" type="time" formControlName="nuevaHora" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Guardar Cambios</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
