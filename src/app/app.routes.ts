@@ -5,6 +5,7 @@ import {ContactoComponent } from './principal/contacto/contacto.component';
 import { LoginComponent } from './principal/login/login.component';
 import { CitaPrincipalComponent } from './principal/citas/cita-principal/cita-principal.component';
 import { CitasDetalleComponent } from './principal/citas/citas-detalle/citas-detalle.component';
+import { RegistroCitasComponent } from './principal/citas/registro-citas/registro-citas.component';
 
 
 export const routes: Routes = [
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'contact', component: ContactoComponent },
   { path: 'login', component: LoginComponent},
   { path: 'citaPrincipal', component: CitaPrincipalComponent},
-  { path: 'detalle-cita/:id', component: CitasDetalleComponent }
+  { path: 'detalle-cita/:id', component: CitasDetalleComponent },
+  { path: 'registrar-cita/:date', component: RegistroCitasComponent },
 
 ];

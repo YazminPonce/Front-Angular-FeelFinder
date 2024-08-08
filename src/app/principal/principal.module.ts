@@ -13,6 +13,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { CitaPrincipalComponent } from './citas/cita-principal/cita-principal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CitasDetalleComponent } from './citas/citas-detalle/citas-detalle.component';
+import { RegistroCitasComponent } from './citas/registro-citas/registro-citas.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CitasDetalleComponent } from './citas/citas-detalle/citas-detalle.compo
     ContactoComponent,
     LoginComponent,
     CitaPrincipalComponent,
-    CitasDetalleComponent
+    CitasDetalleComponent,
+    RegistroCitasComponent
 
 
   ],
@@ -39,7 +41,8 @@ import { CitasDetalleComponent } from './citas/citas-detalle/citas-detalle.compo
     ContactoComponent,
     LoginComponent,
     CitaPrincipalComponent,
-    CitasDetalleComponent
+    CitasDetalleComponent,
+    RegistroCitasComponent
 
   ]
 })
