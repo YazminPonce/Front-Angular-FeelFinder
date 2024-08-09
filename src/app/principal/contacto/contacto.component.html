@@ -1,46 +1,50 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
+    <!-- Formulario de Contacto -->
     <div class="col-md-6">
-      <h2 class="mt-4">Escríbenos</h2>
+      <h2 class="mb-4">Escríbenos</h2>
       <form>
-        <div class="form-group">
-          <label for="name">Nombre</label>
-          <input type="text" class="form-control" placeholder="Ingresa tu nombre">
+        <div class="form-group mb-3">
+          <label for="name" class="form-label">Nombre</label>
+          <input type="text" id="name" class="form-control" placeholder="Ingresa tu nombre" required>
         </div>
-        <div class="form-group">
-          <label for="surname">Apellido</label>
-          <input type="text" class="form-control" placeholder="Ingresa tu apellido">
+        <div class="form-group mb-3">
+          <label for="surname" class="form-label">Apellido</label>
+          <input type="text" id="surname" class="form-control" placeholder="Ingresa tu apellido" required>
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" placeholder="Ingresa tu email">
+        <div class="form-group mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-control" placeholder="Ingresa tu email" required>
         </div>
-        <div class="form-group">
-          <label for="subject">Asunto</label>
-          <input type="text" class="form-control" placeholder="Ingresa tu asunto">
+        <div class="form-group mb-3">
+          <label for="subject" class="form-label">Asunto</label>
+          <input type="text" id="subject" class="form-control" placeholder="Ingresa tu asunto" required>
         </div>
-        <div class="form-group">
-          <label for="message">Mensaje</label>
-          <textarea class="form-control" rows="4" placeholder="Escribe tu mensaje"></textarea>
+        <div class="form-group mb-4">
+          <label for="message" class="form-label">Mensaje</label>
+          <textarea id="message" class="form-control" rows="4" placeholder="Escribe tu mensaje" required></textarea>
         </div>
+        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
       </form>
     </div>
-    <div class="col-md-6">
-      <div class="card mt-1">
-        <div class="card-body">
-          <h5 class="card-title">Oficina </h5>
-          <p class="card-text" style=" margin-top: 30px;">
-            <strong>Dirección:</strong> Calle Mariscos 123, León, Mexíco<br>
-            <strong>Teléfono:</strong> 477 200 3000 4000<br>
 
+    <!-- Información de Contacto -->
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Oficina</h5>
+          <p class="card-text">
+            <strong>Dirección:</strong> Calle Mariscos 123, León, México<br>
+            <strong>Teléfono:</strong> 477 200 3000 4000
           </p>
-          <h6 class="card-subtitle mb-2 text-muted" style=" margin-top: 30px;">Horario de Atención</h6>
-          <p class="card-text" style=" margin-top: 30px;">
-            Lunes a Viernes: 7:00 AM - 4:00 PM<br>
-            Sábado: 5:00 PM - 6:00 PM<br>
-            Domingo: 1:00 PM - 4:00 PM
+          <h6 class="card-subtitle mb-3 text-muted">Horario de Atención</h6>
+          <p class="card-text">
+            Como psicólogo, tu tiempo es invaluable, y nuestra plataforma de gestión está diseñada específicamente para optimizarlo. Imagina un sistema integral donde puedes gestionar de manera eficiente tus pacientes, citas y diarios clínicos, todo desde una única interfaz intuitiva. Con nuestra herramienta, podrás agendar y organizar tus citas con facilidad, asegurando que tu agenda esté siempre bajo control. Además, podrás llevar un seguimiento detallado de los diarios de tus pacientes, registrando notas, avances y objetivos de manera segura y accesible. La plataforma está diseñada para mejorar la eficiencia de tu práctica, permitiéndote concentrarte en lo que realmente importa: el bienestar de tus pacientes. Simplifica tu trabajo, mejora tu organización y ofrece una experiencia más profesional y personalizada con nuestra solución innovadora.
+
+
           </p>
         </div>
       </div>
     </div>
   </div>
+</div>

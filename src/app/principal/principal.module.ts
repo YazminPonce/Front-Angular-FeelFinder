@@ -14,6 +14,9 @@ import { CitaPrincipalComponent } from './citas/cita-principal/cita-principal.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { CitasDetalleComponent } from './citas/citas-detalle/citas-detalle.component';
 import { RegistroCitasComponent } from './citas/registro-citas/registro-citas.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { DiarioPrincipalComponent } from './diario/diario-principal/diario-principal.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +26,10 @@ import { RegistroCitasComponent } from './citas/registro-citas/registro-citas.co
     LoginComponent,
     CitaPrincipalComponent,
     CitasDetalleComponent,
-    RegistroCitasComponent
-
-
+    RegistroCitasComponent,
+    CitasDetalleComponent,
+    PerfilComponent,
+    DiarioPrincipalComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +46,9 @@ import { RegistroCitasComponent } from './citas/registro-citas/registro-citas.co
     LoginComponent,
     CitaPrincipalComponent,
     CitasDetalleComponent,
-    RegistroCitasComponent
+    RegistroCitasComponent,
+    PerfilComponent,
+    DiarioPrincipalComponent
 
   ]
 })

@@ -18,8 +18,8 @@ export class CitaPrincipalComponent {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin, interactionPlugin],
     events: [
-      { id: '1', title: 'Cita Pendiente', date: '2024-08-10', backgroundColor: '#ffcccc' },
-      { id: '2', title: 'Cita Aceptada', date: '2024-08-15', backgroundColor: '#ccffcc' },
+      { id: '1', title: 'Cita Pendiente', date: '2024-08-10', backgroundColor: '#ffcccc', textColor: '#000000'  },
+      { id: '2', title: 'Cita Aceptada', date: '2024-08-15', backgroundColor: '#ccffcc', textColor: '#000000'  },
       // Agrega más eventos si es necesario
     ],
     eventClick: this.handleEventClick.bind(this), // Maneja el clic en el evento
