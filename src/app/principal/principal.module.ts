@@ -13,6 +13,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { CitaPrincipalComponent } from './citas/cita-principal/cita-principal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CitasDetalleComponent } from './citas/citas-detalle/citas-detalle.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +23,6 @@ import { CitasDetalleComponent } from './citas/citas-detalle/citas-detalle.compo
     LoginComponent,
     CitaPrincipalComponent,
     CitasDetalleComponent
-
-
   ],
   imports: [
     CommonModule,
