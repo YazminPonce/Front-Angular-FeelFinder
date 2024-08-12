@@ -9,94 +9,81 @@
             <h1 style="color: #8692f7;" class="text-center">Registro</h1>
             <div class="row">
               <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="firstName">Nombre</label>
-                  <input type="text" id="firstName" class="form-control form-control-lg" />
+                <div data-mdb-input-init class="form-outline">
+                  <label class="form-label" for="form3Example1m">Nombre</label>
+                  <input type="text" id="form3Example1m" class="form-control form-control-lg" />
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div data-mdb-input-init class="form-outline">
+                  <label class="form-label" for="form3Example1n">Apellidos</label>
+                  <input type="text" id="form3Example1n" class="form-control form-control-lg" />
                 </div>
               </div>
 
             </div>
 
-            <div class="row">
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="mothersName">Primer apellido</label>
-                  <input type="text" id="mothersName" class="form-control form-control-lg" />
-                </div>
-              </div>
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="fathersName">Segundo apellido</label>
-                  <input type="text" id="fathersName" class="form-control form-control-lg" />
-                </div>
-              </div>
-            </div>
 
-            <div class="form-outline mb-4">
-              <label class="form-label" for="address">Direccion</label>
-              <input type="text" id="address" class="form-control form-control-lg" />
+            <div data-mdb-input-init class="form-outline mb-4">
+              <label class="form-label" for="form3Example8">Dirección</label>
+              <input type="text" id="form3Example8" class="form-control form-control-lg" />
             </div>
 
             <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
-              <h6 class="mb-0 me-4" style="color: #6a1b9a;">Genero: </h6>
+
+              <h6 class="mb-0 me-4">Género: </h6>
+
               <div class="form-check form-check-inline mb-0 me-4">
-                <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="female" />
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                  value="option1" />
                 <label class="form-check-label" for="femaleGender">Femenino</label>
               </div>
               <div class="form-check form-check-inline mb-0 me-4">
-                <input class="form-check-input" type="radio" name="gender" id="maleGender" value="male" />
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                  value="option2" />
                 <label class="form-check-label" for="maleGender">Masculino</label>
               </div>
               <div class="form-check form-check-inline mb-0">
-                <input class="form-check-input" type="radio" name="gender" id="otherGender" value="other" />
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                  value="option3" />
                 <label class="form-check-label" for="otherGender">Otro</label>
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-6 mb-4">
-                <label class="form-label" for="state">Eatado</label>
-                <select id="state" class="form-select form-control-lg">
-                  <option value="" disabled selected>Seleciona un estado</option>
-                  <option value="1">Guanajuato</option>
-                  <option value="2">Jalisco</option>
-                  <option value="3">Aguascalientes</option>
+
+                <select data-mdb-select-init>
+                  <option value="1">Estado</option>
+                  <option value="2">Option 1</option>
+                  <option value="3">Option 2</option>
+                  <option value="4">Option 3</option>
                 </select>
               </div>
               <div class="col-md-6 mb-4">
-                <label class="form-label" for="city">Ciudad</label>
-                <select id="city" class="form-select form-control-lg">
-                  <option value="" disabled selected>Seleciono una ciudad</option>
-                  <option value="1">León</option>
-                  <option value="2">Guadalajara</option>
-                  <option value="3">Silao</option>
+
+                <select data-mdb-select-init>
+                  <option value="1">Ciudad</option>
+                  <option value="2">Option 1</option>
+                  <option value="3">Option 2</option>
+                  <option value="4">Option 3</option>
                 </select>
               </div>
             </div>
 
-            <div class="form-outline mb-4">
-              <label class="form-label" for="dob">Fecha de nacimiento</label>
-              <input type="date" id="dob" class="form-control form-control-lg" />
+            <div data-mdb-input-init class="form-outline mb-4">
+              <label class="form-label" for="form3Example9">Título</label>
+              <input type="text" id="form3Example9" class="form-control form-control-lg" />
             </div>
 
-            <div class="form-outline mb-4">
-              <label class="form-label" for="pincode">Pincode</label>
-              <input type="text" id="pincode" class="form-control form-control-lg" />
-            </div>
-
-            <div class="form-outline mb-4">
-              <label class="form-label" for="course">Cedula </label>
-              <input type="text" id="course" class="form-control form-control-lg" />
-            </div>
-
-            <div class="form-outline mb-4">
-              <label class="form-label" for="email">Email</label>
-              <input type="email" id="email" class="form-control form-control-lg" />
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Certificado</label>
+              <input class="form-control" type="file" id="formFile">
             </div>
 
             <div class="d-flex justify-content-end pt-3">
-              <button type="reset" class="btn btn-light btn-lg">Limpiar</button>
-              <button type="submit" class="btn btn-warning btn-lg ms-2" style="background-color: #6a1b9a; border-color: #6a1b9a;">Submit form</button>
+              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-light btn-lg">Reiniciar Campos</button>
+              <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning btn-lg ms-2">Registrarse</button>
             </div>
           </form>
         </div>
