@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,PrincipalModule,HttpClientModule,FormsModule,RouterLink, PrincipalModule, SideMenuComponent, CommonModule
+  imports: [RouterOutlet,PrincipalModule,HttpClientModule,FormsModule,RouterLink, PrincipalModule, SideMenuComponent, CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

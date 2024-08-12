@@ -1,22 +1,26 @@
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // Importa el plugin de FullCalendar
+import interactionPlugin from '@fullcalendar/interaction';
+import { RouterModule } from '@angular/router';
+
 import { HomeComponent } from './home/home.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { ContactoComponent } from './contacto/contacto.component';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-import { FullCalendarModule } from '@fullcalendar/angular'; // FullCalendar module
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction';
 import { CitaPrincipalComponent } from './citas/cita-principal/cita-principal.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CitasDetalleComponent } from './citas/citas-detalle/citas-detalle.component';
 import { RegistroCitasComponent } from './citas/registro-citas/registro-citas.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { DiarioPrincipalComponent } from './diario/diario-principal/diario-principal.component';
+import { ListaPacienteComponent } from './paciente/lista-paciente/lista-paciente.component';
+import { DetallePacienteComponent } from './paciente/detalle-paciente/detalle-paciente.component';
 
 @NgModule({
   declarations: [
@@ -27,17 +31,20 @@ import { DiarioPrincipalComponent } from './diario/diario-principal/diario-princ
     CitaPrincipalComponent,
     CitasDetalleComponent,
     RegistroCitasComponent,
-    CitasDetalleComponent,
     PerfilComponent,
-    DiarioPrincipalComponent
+    ListaPacienteComponent,
+    DetallePacienteComponent
   ],
   imports: [
     CommonModule,
-    RouterModule,
-    HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     FullCalendarModule,
-    ReactiveFormsModule
+    RouterModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   exports: [
     HomeComponent,
@@ -48,11 +55,8 @@ import { DiarioPrincipalComponent } from './diario/diario-principal/diario-princ
     CitasDetalleComponent,
     RegistroCitasComponent,
     PerfilComponent,
-    DiarioPrincipalComponent
-
+    ListaPacienteComponent,
+    DetallePacienteComponent
   ]
 })
-export class PrincipalModule   {
-
-
-}
+export class PrincipalModule { }

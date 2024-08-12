@@ -8,7 +8,8 @@ import { CitasDetalleComponent } from './principal/citas/citas-detalle/citas-det
 import { RegistroComponent } from './principal/registro/registro.component';
 import { RegistroCitasComponent } from './principal/citas/registro-citas/registro-citas.component';
 import { PerfilComponent } from './principal/perfil/perfil.component';
-import { DiarioPrincipalComponent } from './principal/diario/diario-principal/diario-principal.component';
+import { ListaPacienteComponent } from './principal/paciente/lista-paciente/lista-paciente.component';
+import { DetallePacienteComponent } from './principal/paciente/detalle-paciente/detalle-paciente.component';
 
 
 export const routes: Routes = [
@@ -22,7 +23,8 @@ export const routes: Routes = [
   { path: 'registrar-cita/:date', component: RegistroCitasComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'perfil', component: PerfilComponent },
-  { path: 'diario', component: DiarioPrincipalComponent }
+  { path: 'paciente', component: ListaPacienteComponent },
+  { path: 'detalle-paciente/:id', component: DetallePacienteComponent },
 
 
 ];

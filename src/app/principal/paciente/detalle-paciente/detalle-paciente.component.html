@@ -1,0 +1,76 @@
+<div class="container mt-5">
+  <h2>Detalles del Paciente</h2>
+
+  <div class="row">
+    <!-- Información del Paciente -->
+    <div class="col-md-6">
+      <div *ngIf="editMode" class="mb-4">
+        <h4>Editar Paciente</h4>
+        <form (ngSubmit)="guardarCambios()" #pacienteForm="ngForm">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" class="form-control" [(ngModel)]="paciente.nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="edad" class="form-label">Edad</label>
+            <input type="number" id="edad" class="form-control" [(ngModel)]="paciente.edad" name="edad" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" [(ngModel)]="paciente.email" name="email" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          <button type="button" class="btn btn-secondary ms-2" (click)="cancelarEdicion()">Cancelar</button>
+        </form>
+      </div>
+
+      <div *ngIf="!editMode" class="mb-4">
+        <h4>Paciente</h4>
+        <p><strong>Nombre:</strong> {{ paciente.nombre }}</p>
+        <p><strong>Edad:</strong> {{ paciente.edad }}</p>
+        <p><strong>Email:</strong> {{ paciente.email }}</p>
+        <button class="btn btn-warning btn-sm me-2" (click)="activarEdicion()">
+          <i class="bi bi-pencil"></i> Modificar Paciente
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="eliminarPaciente()">
+          <i class="bi bi-trash"></i> Eliminar Paciente
+        </button>
+      </div>
+    </div>
+
+    <!-- Citas del Paciente -->
+    <div class="col-md-6">
+      <h4>Citas</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cita of citas">
+            <td>{{ cita.fecha }}</td>
+            <td>{{ cita.hora }}</td>
+            <td>{{ cita.descripcion }}</td>
+            <td>
+              <!-- Puedes agregar botones para modificar y eliminar citas aquí si es necesario -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Botones de acción -->
+  <div class="mt-4">
+    <button class="btn btn-primary" (click)="agregarCita()">
+      <i class="bi bi-journal-bookmark"></i> Diario
+    </button>
+    <button class="btn btn-secondary" (click)="volverALaLista()">
+      <i class="bi bi-arrow-left"></i> Volver a la Lista de Pacientes
+    </button>
+  </div>
+</div>
