@@ -1,0 +1,61 @@
+/* General sidebar styles */
+#sidebar {
+  min-width: 200px; /* Ancho mínimo de la barra de navegación */
+  max-width: 200px; /* Ancho máximo de la barra de navegación */
+  height: 100vh; /* Altura completa de la ventana */
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #8635b8; /* Color de fondo morado */
+  padding: 20px;
+  transition: all 0.3s;
+  color: #ffffff; /* Color del texto */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para un efecto de elevación */
+}
+
+#sidebar .sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px; /* Espacio debajo del encabezado */
+}
+
+#sidebar .sidebar-header img {
+  height: 80px; /* Altura del logotipo */
+}
+
+#sidebar .sidebar-header span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 10px;
+  color: #ffffff; /* Color del texto del logotipo */
+}
+
+#sidebar ul.components {
+  padding: 20px 0; /* Espaciado en la parte superior e inferior */
+  border-bottom: 1px solid #5e35b1; /* Línea de separación morada más oscura */
+}
+
+#sidebar ul li {
+  list-style: none; /* Elimina los puntos de lista */
+}
+
+#sidebar ul li a {
+  padding: 15px 20px; /* Relleno dentro de los enlaces */
+  font-size: 1.2rem; /* Tamaño de fuente de los enlaces */
+  display: block;
+  color: #ffffff; /* Color del texto de los enlaces */
+  text-decoration: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente del texto de los enlaces */
+  font-weight: normal;
+  transition: background 0.3s, color 0.3s; /* Transición suave para los cambios de color */
+}
+
+#sidebar ul li a:hover {
+  color: #ffffff; /* Color del texto al pasar el mouse */
+  background: #4a148c; /* Color de fondo al pasar el mouse */
+}
+
+#sidebar ul li a.active {
+  background: #4a148c; /* Color de fondo para el enlace activo */
+}

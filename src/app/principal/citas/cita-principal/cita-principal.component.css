@@ -1,0 +1,40 @@
+/* Título del calendario */
+h1.text-primary {
+  color: #6f42c1; /* Color morado */
+}
+
+/* Contenedor del calendario */
+.calendar-container {
+  border: 1px solid #dee2e6; /* Borde sutil alrededor del contenedor */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+  border-radius: 0.5rem; /* Bordes redondeados */
+  padding: 1.5rem; /* Relleno interior del contenedor */
+  background-color: #ffffff; /* Color de fondo blanco */
+  max-width: 10%; /* Ajuste del ancho máximo del contenedor */
+  margin: auto; /* Centra el contenedor horizontalmente */
+}
+
+/* Cambiar el color del texto de los eventos */
+.fc-event-title {
+  color: #ffffff; /* Cambia el color del texto de los eventos */
+}
+
+/* Opcional: Cambiar el color de fondo de los eventos */
+.fc-event {
+  border-color: #ffffff; /* Cambia el color del borde de los eventos */
+}
+
+/* Cambiar el color del texto en los días del calendario */
+.fc-daygrid-day-number {
+  color: #6f42c1; /* Cambia el color del número del día */
+}
+
+/* Cambiar el color del texto del título del mes */
+.fc-col-header-cell-cushion {
+  color: #6f42c1; /* Cambia el color del texto del encabezado del mes */
+}
+
+/* Cambiar el color del texto del encabezado del día */
+.fc-daygrid-day-top {
+  color: #6f42c1; /* Cambia el color del texto del encabezado de cada día */
+}

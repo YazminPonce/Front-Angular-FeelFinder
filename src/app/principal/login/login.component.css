@@ -1,0 +1,44 @@
+.bg-image-vertical {
+    position: relative;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+  }
+
+  @media (min-width: 1025px) {
+    .h-custom-2 {
+      height: 100%;
+    }
+  }
+
+  .full-screen-background {
+    background-color: #ffffff; /* Color de fondo para toda la pantalla */
+    height: 100vh;
+    width: 400vw;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .login-container {
+
+
+      background-color: #ffffff; /* Color de fondo blanco para el contenedor del login */
+      padding: 2rem;
+      border-radius: 8px; /* Bordes redondeados */
+      box-shadow: 0 8px 16px rgba(191, 6, 247, 0.283); /* Aumentar la sombra para mejor visibilidad */
+      width: 100%;
+      max-width: 500px; /* Ajusta el tamaño máximo */
+      position: relative; /* Asegura que la sombra se renderice correctamente */
+      z-index: 1; /* Asegura que el contenedor esté encima de otros elementos */
+
+     /* Opcional: ajustar el tamaño máximo */
+  }
+
+  .login-image {
+    object-fit: cover;
+    object-position: left;
+    height: 50vh;
+  }

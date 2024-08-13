@@ -1,0 +1,35 @@
+<div class="container">
+  <h2 class="mt-4">Galería de Productos</h2>
+
+  <input
+    type="text"
+    class="form-control mb-4"
+    placeholder="Buscar producto..."
+    [(ngModel)]="nombreProducto"
+    (ngModelChange)="filtrarProductos()"
+  >
+  <div class="mb-4">
+    <button class="btn btn-outline-primary" (click)="Todos()" style=" margin-right: 10px;">Todos</button>
+    <button class="btn btn-outline-primary mr-2" (click)="filtrarCategoria(2)" style=" margin-right: 10px;">Varón</button>
+    <button class="btn btn-outline-primary mr-2" (click)="filtrarCategoria(1)" style=" margin-right: 10px;">Dama</button>
+    <button class="btn btn-outline-primary mr-2" (click)="filtrarCategoria(3)" style=" margin-right: 10px;">Niño</button>
+    <button class="btn btn-outline-primary" (click)="filtrarCategoria(4)" style=" margin-right: 10px;">Niña</button>
+  </div>
+
+  <div class="row mt-4" *ngIf="isResultLoads">
+    <div class="col-md-4" *ngFor="let producto of filtradoPiyamalista">
+      <div class="card mb-4 shadow-sm">
+        <div style="display: flex; justify-content: center; align-items: center; width: 400px; height: 300px;">
+          <img [src]="'assets/imagen/' + producto.imagen + '.png'" alt="{{producto.nombre}}" style="max-width: 100%; max-height: 100%; object-fit: cover;">
+        </div>
+    <div class="card-body">
+          <h5 class="card-title">{{producto.nombre}}</h5>
+
+          <p class="card-text">{{producto.descripcion}}</p>
+          <p class="card-text"><small class="text-muted">{{producto.precio | currency}}</small></p>
+          <p class="card-text"><small class="text-muted">Categoría: {{producto.idCategoria}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
