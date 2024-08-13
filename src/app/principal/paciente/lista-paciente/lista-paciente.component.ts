@@ -70,7 +70,8 @@ export class ListaPacienteComponent implements OnInit {
 
 
   nuevaPaciente() {
-    // Implementar lógica para agregar nuevo paciente
+
+    this.router.navigate(['/agregar']);
   }
 
   getPagesArray() {

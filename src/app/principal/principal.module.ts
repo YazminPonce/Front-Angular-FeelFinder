@@ -21,6 +21,10 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ListaPacienteComponent } from './paciente/lista-paciente/lista-paciente.component';
 import { DetallePacienteComponent } from './paciente/detalle-paciente/detalle-paciente.component';
+import { AgregarPacienteComponent } from './paciente/agregar-paciente/agregar-paciente.component';
+import { PrincipalDiarioComponent } from './diario/principal-diario/principal-diario.component';
+import { EmocionesDiarioComponent } from './diario/emociones-diario/emociones-diario.component';
+import { DetalleDiarioComponent } from './diario/detalle-diario/detalle-diario.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { DetallePacienteComponent } from './paciente/detalle-paciente/detalle-pa
     RegistroCitasComponent,
     PerfilComponent,
     ListaPacienteComponent,
-    DetallePacienteComponent
+    DetallePacienteComponent,
+    AgregarPacienteComponent,
+    DetalleDiarioComponent,
+    PrincipalDiarioComponent,
+    EmocionesDiarioComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +64,11 @@ import { DetallePacienteComponent } from './paciente/detalle-paciente/detalle-pa
     RegistroCitasComponent,
     PerfilComponent,
     ListaPacienteComponent,
-    DetallePacienteComponent
+    DetallePacienteComponent,
+    AgregarPacienteComponent,
+    DetalleDiarioComponent,
+    PrincipalDiarioComponent,
+    EmocionesDiarioComponent
   ]
 })
 export class PrincipalModule { }
