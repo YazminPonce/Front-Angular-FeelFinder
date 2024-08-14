@@ -4,7 +4,7 @@
   <div class="card mx-auto" style="max-width: 500px;">
     <div class="card-body">
       <h5 class="card-title">Fecha Seleccionada: {{ selectedDate }}</h5>
-      <form (ngSubmit)="registerAppointment()">
+      <form [formGroup]="appointmentForm" (ngSubmit)="registerAppointment()">
         <div class="mb-3">
           <label for="patientName" class="form-label">Nombre del Paciente:</label>
           <input id="patientName" type="text" formControlName="patientName" class="form-control" required>

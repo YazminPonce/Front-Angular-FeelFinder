@@ -7,16 +7,26 @@ import { Paciente } from './interface';
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent {
-  pacientes: Paciente[] = [
-    { id: 1, nombre: 'Juan Pérez', edad: 30, email: 'juan.perez@example.com' },
-    { id: 2, nombre: 'Ana Gómez', edad: 25, email: 'ana.gomez@example.com' },
-    { id: 3, nombre: 'Luis Fernández', edad: 40, email: 'luis.fernandez@example.com' },
-    // Agrega más pacientes si es necesario
-  ];
+  user = {
+    username: 'UsuarioEjemplo',
+    email: 'usuario@ejemplo.com',
+    phone: '',
+    address: ''
+  };
 
-  pacienteSeleccionado?: Paciente;
+  constructor() {}
 
-  seleccionarPaciente(paciente: Paciente) {
-    this.pacienteSeleccionado = paciente;
+  ngOnInit(): void {
+    // Aquí puedes cargar los datos del usuario desde un servicio
+  }
+
+  saveProfile(): void {
+    // Lógica para guardar los cambios en el perfil
+    console.log('Perfil guardado:', this.user);
+  }
+
+  deleteProfile(): void {
+    // Lógica para eliminar el perfil
+    console.log('Perfil eliminado');
   }
 }

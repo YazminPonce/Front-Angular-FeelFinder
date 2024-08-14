@@ -35,7 +35,6 @@ export class AppComponent {
       if (event instanceof NavigationEnd) {
         if (event.url === '/login' || event.url === '/registro' ) {
           this.login= true;
-
         } else {
           this.login= false;
         }

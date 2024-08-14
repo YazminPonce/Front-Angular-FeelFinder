@@ -16,6 +16,20 @@ export class GaleriaComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
+    this.obtenerProductos();
+  }
+
+  obtenerProductos() {
+    //this.apiService.getProductos().subscribe({
+    //   next: (data) => {
+     //    this.piyamalista = data;
+      //   this.filtradoPiyamalista = data;
+   //      this.isResultLoads = true;
+   //    },
+    //   error: (e) => {
+       //  console.error('Error al obtener los productos', e);
+     //  }
+   //  });
   }
 
   filtrarProductos() {

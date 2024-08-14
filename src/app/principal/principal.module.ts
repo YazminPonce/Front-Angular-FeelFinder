@@ -8,19 +8,16 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { FullCalendarModule } from '@fullcalendar/angular'; // FullCalendar module
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction';
 import { CitaPrincipalComponent } from './citas/cita-principal/cita-principal.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ListaPacienteComponent } from './paciente/lista-paciente/lista-paciente.component';
+import { DetallePacienteComponent } from './paciente/detalle-paciente/detalle-paciente.component';
+import { AgregarPacienteComponent } from './paciente/agregar-paciente/agregar-paciente.component';
+import { PrincipalDiarioComponent } from './diario/principal-diario/principal-diario.component';
+import { EmocionesDiarioComponent } from './diario/emociones-diario/emociones-diario.component';
+import { DetalleDiarioComponent } from './diario/detalle-diario/detalle-diario.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CitasDetalleComponent } from './citas/citas-detalle/citas-detalle.component';
 import { RegistroCitasComponent } from './citas/registro-citas/registro-citas.component';
-import { SideMenuComponent } from './side-menu/side-menu.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { DiarioPrincipalComponent } from './diario/diario-principal/diario-principal.component';
 
@@ -30,11 +27,16 @@ import { DiarioPrincipalComponent } from './diario/diario-principal/diario-princ
         ContactoComponent,
         LoginComponent,
         CitaPrincipalComponent,
-        CitasDetalleComponent,
+        CitasDetalleComponent,ListaPacienteComponent,
         RegistroCitasComponent,
         CitasDetalleComponent,
         PerfilComponent,
-        DiarioPrincipalComponent
+        DiarioPrincipalComponent,
+        DetallePacienteComponent,
+        AgregarPacienteComponent,
+        DetalleDiarioComponent,
+        PrincipalDiarioComponent,
+        EmocionesDiarioComponent
     ],
     exports: [
         HomeComponent,
@@ -45,14 +47,20 @@ import { DiarioPrincipalComponent } from './diario/diario-principal/diario-princ
         CitasDetalleComponent,
         RegistroCitasComponent,
         PerfilComponent,
-        DiarioPrincipalComponent
+        DiarioPrincipalComponent,
+        ListaPacienteComponent,
+        DetallePacienteComponent,
+        AgregarPacienteComponent,
+        DetalleDiarioComponent,
+        PrincipalDiarioComponent,
+        EmocionesDiarioComponent
     ], imports: [CommonModule,
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
         FullCalendarModule,
       ], providers: [provideHttpClient(withInterceptorsFromDi())] })
-export class PrincipalModule   {
 
+export class PrincipalModule   {
 
 }

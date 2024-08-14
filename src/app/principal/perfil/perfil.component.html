@@ -1,20 +1,38 @@
 <div class="container mt-5">
-  <h2>Lista de Pacientes</h2>
-  <div class="list-group">
-    <a
-      *ngFor="let paciente of pacientes"
-      (click)="seleccionarPaciente(paciente)"
-      class="list-group-item list-group-item-action"
-      [class.active]="paciente === pacienteSeleccionado">
-      <h5 class="mb-1">{{ paciente.nombre }}</h5>
-      <p class="mb-1">Edad: {{ paciente.edad }}</p>
-      <p class="mb-1">Email: {{ paciente.email }}</p>
-    </a>
-  </div>
-  <div *ngIf="pacienteSeleccionado" class="mt-4">
-    <h4>Paciente Seleccionado</h4>
-    <p><strong>Nombre:</strong></p>
-    <p><strong>Edad:</strong> </p>
-    <p><strong>Email:</strong> </p>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card-body text-center">
+          <h3 class="card-title" style="color: #6a0dad;">Perfil de Usuario</h3>
+
+          <form>
+            <div class="mb-3 text-start">
+              <label for="username" class="form-label">Nombre de Usuario</label>
+              <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" readonly>
+            </div>
+
+            <div class="mb-3 text-start">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email" readonly>
+            </div>
+
+            <div class="mb-3 text-start">
+              <label for="phone" class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" id="phone" [(ngModel)]="user.phone" name="phone">
+            </div>
+
+            <div class="mb-3 text-start">
+              <label for="address" class="form-label">Dirección</label>
+              <input type="text" class="form-control" id="address" [(ngModel)]="user.address" name="address">
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="button" class="btn btn-primary me-md-2" (click)="saveProfile()">Guardar</button>
+              <button type="button" class="btn btn-danger" (click)="deleteProfile()">Eliminar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

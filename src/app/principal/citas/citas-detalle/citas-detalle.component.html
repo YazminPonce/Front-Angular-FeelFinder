@@ -36,7 +36,7 @@
       <!-- Formulario de reprogramación -->
       <div *ngIf="showReprogramar" class="card w-100 mt-2 shadow-sm">
         <div class="card-body">
-          <form (ngSubmit)="reprogramar()">
+          <form [formGroup]="reprogramarForm" (ngSubmit)="reprogramar()">
             <div class="mb-3">
               <label for="nuevaFecha" class="form-label">Nueva Fecha:</label>
               <input id="nuevaFecha" type="date" formControlName="nuevaFecha" class="form-control" required>

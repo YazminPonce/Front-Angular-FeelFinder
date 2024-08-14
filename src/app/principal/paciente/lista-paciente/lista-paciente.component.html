@@ -1,0 +1,62 @@
+<div class="container mt-5">
+  <h2>Lista de Pacientes</h2>
+
+  <!-- Barra de búsqueda -->
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Buscar por nombre, edad o email"
+      [(ngModel)]="searchTerm"
+      (input)="applyFilter()">
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paciente of paginatedPacientes" (click)="seleccionarPaciente(paciente)">
+        <td>{{ paciente.nombre }}</td>
+        <td>{{ paciente.edad }}</td>
+        <td>{{ paciente.email }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Paginator con Bootstrap -->
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="setPage(currentPage - 1)" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li *ngFor="let page of getPagesArray()" class="page-item" [class.active]="page === currentPage">
+        <a class="page-link" (click)="setPage(page)">{{ page }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="setPage(currentPage + 1)" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div *ngIf="pacienteSeleccionado" class="mt-4">
+    <h4>Paciente Seleccionado</h4>
+    <p><strong>Nombre:</strong> {{ pacienteSeleccionado.nombre }}</p>
+    <p><strong>Edad:</strong> {{ pacienteSeleccionado.edad }}</p>
+    <p><strong>Email:</strong> {{ pacienteSeleccionado.email }}</p>
+  </div>
+
+  <!-- Botón flotante para agregar paciente -->
+  <button class="btn btn-primary btn-floating" (click)="nuevaPaciente()">
+    <i class="bi bi-plus"></i> <!-- Icono de agregar -->
+  </button>
+</div>

@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CitasDetalleComponent implements OnInit {
   citaId: string | null = null;
   citaEstado: string = 'en espera'; // Estado de la cita (puede ser 'en espera', 'aceptada', etc.)
-  reprogramarForm!: FormGroup; // Debe ser de tipo FormGroup
+  reprogramarForm: FormGroup; // Debe ser de tipo FormGroup
   showReprogramar: boolean = false; // Controla la visibilidad del formulario
 
   constructor(
