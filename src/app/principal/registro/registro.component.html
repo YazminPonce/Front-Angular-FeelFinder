@@ -10,24 +10,22 @@
             <div class="row">
               <div class="col-md-12 mb-4">
                 <div class="form-outline">
-                  <label class="form-label" for="firstName">Nombre</label>
-                  <input type="text" id="firstName" class="form-control form-control-lg" />
+                  <label class="form-label" for="fullName">Nombre</label>
+                  <input type="text" id="nombre"  matInput placeholder="nombre" formControlName="nombre"    class="form-control form-control-lg" />
                 </div>
               </div>
-
             </div>
-
             <div class="row">
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
                   <label class="form-label" for="mothersName">Primer apellido</label>
-                  <input type="text" id="mothersName" class="form-control form-control-lg" />
+                  <input type="text" id="ApellidoMaterno"  matInput placeholder="ApellidoMaterno" formControlName="apellidoMaterno"  class="form-control form-control-lg" />
                 </div>
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
                   <label class="form-label" for="fathersName">Segundo apellido</label>
-                  <input type="text" id="fathersName" class="form-control form-control-lg" />
+                  <input type="text"  id="ApellidoPaterno"  matInput placeholder="ApellidoPaterno" formControlName="apellidoPaterno"  class="form-control form-control-lg" />
                 </div>
               </div>
             </div>
@@ -36,83 +34,108 @@
               <input type="email" matInput placeholder="Email" formControlName="email"  class="form-control form-control-lg" />
             </div>
 
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label> Password</mat-label>
-        <input matInput formControlName="password" type="{{passwordHide ? 'password':'text'}}" placeholder="Password">
-        <mat-icon matPrefix>lock</mat-icon>
-        <mat-icon (click)="passwordHide = !passwordHide" matSuffix>{{passwordHide ?
-          'visibility_off':'visibility'}}</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label>Confirm Password</mat-label>
-        <input formControlName="confirmPassword" matInput type="{{confirmPasswordHide ? 'password':'text'}}"
-          placeholder="Confirm Password">
-        <mat-icon matPrefix>lock</mat-icon>
-        <mat-icon (click)="confirmPasswordHide = !confirmPasswordHide" matSuffix>{{confirmPasswordHide ?
-          'visibility_off':'visibility'}}</mat-icon>
-
-      </mat-form-field>
             <div class="form-outline mb-4">
-              <label class="form-label" for="address">Direccion</label>
-              <input type="text" id="address" class="form-control form-control-lg" />
-            </div>
-
-            <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
-              <h6 class="mb-0 me-4" style="color: #6a1b9a;">Genero: </h6>
-              <div class="form-check form-check-inline mb-0 me-4">
-                <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="female" />
-                <label class="form-check-label" for="femaleGender">Femenino</label>
-              </div>
-              <div class="form-check form-check-inline mb-0 me-4">
-                <input class="form-check-input" type="radio" name="gender" id="maleGender" value="male" />
-                <label class="form-check-label" for="maleGender">Masculino</label>
-              </div>
-              <div class="form-check form-check-inline mb-0">
-                <input class="form-check-input" type="radio" name="gender" id="otherGender" value="other" />
-                <label class="form-check-label" for="otherGender">Otro</label>
+              <label class="form-label" for="password">Contraseña</label>
+              <input
+                type="password"
+                matInput
+                placeholder="password"
+                formControlName="password"
+                class="form-control form-control-lg"
+              />
+              <div *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched">
+                <small class="text-danger">La contraseña es requerida y debe tener al menos 8 caracteres</small>
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-md-6 mb-4">
-                <label class="form-label" for="state">Eatado</label>
-                <select id="state" class="form-select form-control-lg">
-                  <option value="" disabled selected>Seleciona un estado</option>
-                  <option value="1">Guanajuato</option>
-                  <option value="2">Jalisco</option>
-                  <option value="3">Aguascalientes</option>
-                </select>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="confirmPassword">Confirmar Contraseña</label>
+              <input
+                type="password"
+                matInput
+                placeholder="confirm password"
+                formControlName="confirmPassword"
+                class="form-control form-control-lg"
+              />
+              <div *ngIf="registerForm.controls['confirmPassword'].invalid && registerForm.controls['confirmPassword'].touched">
+                <small class="text-danger">Las contraseñas no coinciden</small>
               </div>
-              <div class="col-md-6 mb-4">
-                <label class="form-label" for="city">Ciudad</label>
-                <select id="city" class="form-select form-control-lg">
-                  <option value="" disabled selected>Seleciono una ciudad</option>
-                  <option value="1">León</option>
-                  <option value="2">Guadalajara</option>
-                  <option value="3">Silao</option>
-                </select>
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="telefono">Teléfono</label>
+              <input
+                type="text"
+                matInput
+                placeholder="telefono"
+                formControlName="telefono"
+                class="form-control form-control-lg"
+                pattern="^\d{10}$"
+              />
+              <div *ngIf="registerForm.controls['telefono'].invalid && registerForm.controls['telefono'].touched">
+                <small class="text-danger">El teléfono debe ser un número de 10 dígitos</small>
               </div>
             </div>
 
             <div class="form-outline mb-4">
               <label class="form-label" for="dob">Fecha de nacimiento</label>
-              <input type="date" id="dob" class="form-control form-control-lg" />
+              <input type="date" matInput
+              formControlName="fechaNacimiento"
+              class="form-control form-control-lg" />
+            </div>
+
+            <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+              <div class="mb-0 me-4" style="color: #6a1b9a;">Genero: </div>
+              <div class="form-check form-check-inline mb-0 me-4">
+                <input class="form-check-input"
+                formControlName="sexo" type="radio" name="sexo" id="femaleGender" value="female" />
+                <label class="form-check-label" for="femaleGender">Femenino</label>
+              </div>
+              <div class="form-check form-check-inline mb-0 me-4">
+                <input class="form-check-input"
+                formControlName="sexo" type="radio" name="sexo" id="maleGender" value="male" />
+                <label class="form-check-label" for="maleGender">Masculino</label>
+              </div>
+              <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input"
+                formControlName="sexo" type="radio" name="sexo" id="otherGender" value="other" />
+                <label class="form-check-label" for="otherGender">Otro</label>
+              </div>
+            </div>
+
+            <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+              <div class="mb-0 me-4" style="color: #6a1b9a;">Estado Civil: </div>
+              <div class="form-check form-check-inline mb-0 me-4">
+                <input class="form-check-input"
+                formControlName="estadoCivil"  type="radio" name="estadoCivil" id="solteroEC" value="female" />
+                <label class="form-check-label" for="solteroEC">Soltero</label>
+              </div>
+              <div class="form-check form-check-inline mb-0 me-4">
+                <input class="form-check-input"
+                formControlName="estadoCivil"  type="radio" name="estadoCivil" id="casadoEC" value="male" />
+                <label class="form-check-label" for="casadoEC">Casado</label>
+              </div>
+              <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input"
+                formControlName="estadoCivil"  type="radio" name="estadoCivil" id="separadoEC" value="other" />
+                <label class="form-check-label" for="separadoEC">Separado</label>
+              </div>
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="address">Direccion</label>
+              <input type="text" id="address" class="form-control form-control-lg" />
             </div>
 
             <div class="form-outline mb-4">
-              <label class="form-label" for="course">RFC </label>
-              <input type="text" id="course" class="form-control form-control-lg" />
+              <label class="form-label" for="ocupacion">Ocupación</label>
+              <input type="text" id="ocupacion" matInput
+              formControlName="ocupacion"   class="form-control form-control-lg" />
             </div>
+
             <div class="form-outline mb-4">
-              <label class="form-label" for="course">Cedula </label>
-              <input type="text" id="course" class="form-control form-control-lg" />
+              <label class="form-label" for="titulo">Título </label>
+              <input type="text" matInput
+              formControlName="titulo"    id="titulo" class="form-control form-control-lg" />
             </div>
-
-
-
-
-
             <div class="d-flex justify-content-end pt-3">
               <button type="reset" class="btn btn-light btn-lg">Limpiar</button>
               <button type="submit" class="btn btn-warning btn-lg ms-2" style="background-color: #6a1b9a; border-color: #6a1b9a;">Submit form</button>

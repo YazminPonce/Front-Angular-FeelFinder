@@ -15,12 +15,13 @@ import { Role } from '../../interfaces/role';
 import { ValidationError } from '../../interfaces/validation-error';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormFieldCustomControlExample } from '../tel-input/tel-input.component';
 
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [MatInputModule, MatSelectModule, MatIconModule, RouterLink, CommonModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatSelectModule, MatIconModule, RouterLink, CommonModule, ReactiveFormsModule,FormFieldCustomControlExample],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
@@ -39,6 +40,7 @@ export class RegistroComponent {
 
 
   register() {
+    if (this.registerForm.valid) {
     this.authService.register(this.registerForm.value).subscribe({
       next: (response) => {
         console.log(response);
@@ -60,37 +62,45 @@ export class RegistroComponent {
       },
       complete: () => console.log('Register success'),
     });
+  }else{
+    console.log('Formulario no válido');
+  }
   }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required]],
-        fullName: ['', Validators.required],
-        roles: [''],
-        confirmPassword: ['', Validators.required],
+        nombre: ['', Validators.required],
+        apellidoMaterno: ['', Validators.required],
+        apellidoPaterno: ['', Validators.required],
+        sexo: ['', Validators.required],
+        fechaNacimiento: ['', Validators.required],
+        estadoCivil: ['', Validators.required],
+        titulo: ['', Validators.required],
+        ocupacion: ['', Validators.required],
+        roles: [['cliente']],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', [Validators.required]],
+        telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
       },
       {
         validator: this.passwordMatchValidator,
       }
     );
 
+    // Subscribe to value changes if needed
+    this.registerForm.valueChanges.subscribe(value => {
+      console.log('Form value changed:', value);
+    });
+
     this.roles$ = this.roleService.getRoles();
   }
 
-
-  private passwordMatchValidator(
-    control: AbstractControl
-  ): { [key: string]: boolean } | null {
-    const password = control.get('password')?.value;
-    const confirmPassword = control.get('confirmPassword')?.value;
-
-    if (password !== confirmPassword) {
-      return { passwordMismatch: true };
-    }
-
-    return null;
+  passwordMatchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { mismatch: true };
   }
 
 }
