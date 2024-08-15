@@ -79,7 +79,7 @@ export class RegistroComponent {
         estadoCivil: ['', Validators.required],
         titulo: ['', Validators.required],
         ocupacion: ['', Validators.required],
-        roles: [['cliente']],
+        roles: [['profesional']],
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required]],
         telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
