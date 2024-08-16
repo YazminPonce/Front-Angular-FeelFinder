@@ -1,6 +1,7 @@
+import { Paciente } from './../../perfil/interface';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Paciente } from '../../interface/IPaciente';
+
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
