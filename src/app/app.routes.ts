@@ -11,8 +11,8 @@ import { PerfilComponent } from './principal/perfil/perfil.component';
 import { ListaPacienteComponent } from './principal/paciente/lista-paciente/lista-paciente.component';
 import { DetallePacienteComponent } from './principal/paciente/detalle-paciente/detalle-paciente.component';
 import { AgregarPacienteComponent } from './principal/paciente/agregar-paciente/agregar-paciente.component';
-import { DetalleDiarioComponent } from './principal/diario/detalle-diario/detalle-diario.component';
 import { PrincipalDiarioComponent } from './principal/diario/principal-diario/principal-diario.component';
+import { DiarioDetalleComponent } from './principal/diario/diario-detalle/diario-detalle.component';
 
 
 export const routes: Routes = [
@@ -30,7 +30,7 @@ export const routes: Routes = [
   { path: 'detalle-paciente/:id', component: DetallePacienteComponent },
   { path: 'agregar', component: AgregarPacienteComponent },
   { path: 'diario', component: PrincipalDiarioComponent },
-  { path: 'detalle-diario/id', component: DetalleDiarioComponent }
+  { path: 'detalle-diario/:id', component: DiarioDetalleComponent }
 
 
 ];

@@ -1,25 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { ApiService } from '../../../services/api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Entrada } from '../../../interfaces/diario';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-principal-diario',
   templateUrl: './principal-diario.component.html',
-  styleUrl: './principal-diario.component.css'
+  styleUrls: ['./principal-diario.component.css']
 })
-export class PrincipalDiarioComponent  implements OnInit {
-  selectedDate: string | null = null;
-  diarios = [
-    { id: 1,titulo: 'Diario Lunes', fecha: new Date('2024-08-12'), descripcion: 'Contenido del diario de lunes.' },
-    { id: 2,titulo: 'Diario Martes', fecha: new Date('2024-08-13'), descripcion: 'Contenido del diario de martes.' },
-    { id: 3,titulo: 'Diario Miércoles', fecha: new Date('2024-08-14'), descripcion: 'Contenido del diario de miércoles.' },
-    { id: 4,titulo: 'Diario Jueves', fecha: new Date('2024-08-15'), descripcion: 'Contenido del diario de jueves.' },
-    { id: 5,titulo: 'Diario Viernes', fecha: new Date('2024-08-16'), descripcion: 'Contenido del diario de viernes.' },
-  ];
+export class PrincipalDiarioComponent implements OnInit {
+  authService = inject(ApiService);
+  matSnackBar = inject(MatSnackBar);
+  router = inject(Router);
+  hide = true;
+  form!: FormGroup;
+  fb = inject(FormBuilder);
 
-  filteredDiarios = this.diarios;
+  selectedDate: string | null = null;
+  diarios: Entrada[] = [];
+  filteredDiarios: Entrada[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
+    this.listadiario();
     this.filterByDate();
   }
 
@@ -31,8 +38,39 @@ export class PrincipalDiarioComponent  implements OnInit {
         return diarioFecha.toDateString() === selected.toDateString();
       });
     } else {
-      this.filteredDiarios = this.diarios;
+      const today = new Date();
+      const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
+      startOfWeek.setHours(0, 0, 0, 0); // Ajustar al inicio del día
+
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate() + 6);
+      endOfWeek.setHours(23, 59, 59, 999); // Ajustar al final del día
+
+      this.filteredDiarios = this.diarios.filter(diario => {
+        const diarioFecha = new Date(diario.fecha);
+        return diarioFecha >= startOfWeek && diarioFecha <= endOfWeek;
+      });
     }
   }
-}
 
+  verDetalleDiario(id: number): void {
+    this.router.navigate(['/detalle-diario', id]);
+  }
+
+  listadiario() {
+    const id = 1; // Replace with the actual ID you want to pass
+    this.authService.getListaDiarios(id).subscribe({
+      next: (response) => {
+        console.log('Lista de pacientes:', response);
+        this.diarios = response;
+        this.filterByDate(); // Apply the filter after loading the data
+      },
+      error: (error) => {
+        this.matSnackBar.open(error.error.message, 'Close', {
+          duration: 5000,
+          horizontalPosition: 'center',
+        });
+      },
+    });
+  }
+}

@@ -10,6 +10,8 @@ import { UserDetail } from '../interfaces/user-detail';
 import { ResetPasswordRequest } from '../interfaces/reset-password-request';
 import { ChangePasswordRequest } from '../interfaces/change-password-request';
 import { Paciente } from '../interfaces/paciente';
+import { Entrada } from '../interfaces/diario';
+
 
 @Injectable({
   providedIn: 'root'
@@ -121,6 +123,14 @@ export class ApiService {
 
   /* paciente */
   getPacientePsicologo = (id: number): Observable<Paciente[]> =>
-    this.http.get<Paciente[]>(`${this.apiUrl}Paciente/paciente/${id}/profesionales`);
+    this.http.get<Paciente[]>(`${this.apiUrl}Paciente/profesional/${id}/pacientes`);
+
+
+  /* paciente */
+  getListaDiarios = (id: number): Observable<Entrada[]> =>
+    this.http.get<Entrada[]>(`${this.apiUrl}Diario/paciente/${id}/diarios`);
+
+  getDiario = (id: number): Observable<Entrada> =>
+    this.http.get<Entrada>(`${this.apiUrl}Diario/diario/${id}`);
 
 }
