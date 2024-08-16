@@ -1,7 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Route, ActivatedRoute, Router } from '@angular/router';
-import { Cita } from '../../interface/ICita';
 import { Paciente } from '../../perfil/interface';
+import { Cita } from '../../../interfaces/cita';
 
 
 @Component({
