@@ -10,6 +10,7 @@ import { UserDetail } from '../interfaces/user-detail';
 import { ResetPasswordRequest } from '../interfaces/reset-password-request';
 import { ChangePasswordRequest } from '../interfaces/change-password-request';
 import { Paciente } from '../interfaces/paciente';
+import { UpdatePacienteDto } from '../interfaces/UpdatePacienteDto';
 
 @Injectable({
   providedIn: 'root'
@@ -121,6 +122,13 @@ export class ApiService {
 
   /* paciente */
   getPacientePsicologo = (id: number): Observable<Paciente[]> =>
-    this.http.get<Paciente[]>(`${this.apiUrl}Paciente/paciente/${id}/profesionales`);
+    this.http.get<Paciente[]>(`${this.apiUrl}Paciente/profesional/${id}/pacientes`);
 
+  eliminarPaciente(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}Paciente/eliminar-paciente/${id}`);
+  }
+
+  modificarPaciente(id: number, updatePacienteDto: UpdatePacienteDto): Observable<any> {
+    return this.http.put(`${this.apiUrl}Paciente/modificar-paciente/${id}`, updatePacienteDto);
+  }
 }

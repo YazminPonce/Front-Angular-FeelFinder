@@ -10,6 +10,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { ApiService } from '../../../services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UpdatePacienteDto } from '../../../interfaces/UpdatePacienteDto';
 
 @Component({
   selector: 'app-lista-paciente',
@@ -49,11 +50,14 @@ export class ListaPacienteComponent implements OnInit {
     this.applyFilter(); // Inicializa la lista de pacientes con paginación y filtro
   }
 
+
+
+
   applyFilter() {
     const filterValue = this.searchTerm.toLowerCase();
     const filteredPacientes = this.pacientes.filter(paciente =>
       paciente.nombre.toLowerCase().includes(filterValue) ||
-      paciente.edad.toString().includes(filterValue) ||
+      paciente.edad!.toString().includes(filterValue) ||
       paciente.email.toLowerCase().includes(filterValue)
     );
 
@@ -97,6 +101,75 @@ export class ListaPacienteComponent implements OnInit {
             });
         },
     });
+}
+
+
+editarPaciente(paciente: Paciente) {
+  const id = paciente.id
+
+  // Crear el DTO con la información del paciente
+  const updatePacienteDto: UpdatePacienteDto = {
+    nombre: paciente.nombre,
+    apellidoPaterno: paciente.apellidoPaterno,
+    apellidoMaterno: paciente.apellidoMaterno,
+    telefono: paciente.telefono,
+    fechaNacimiento: paciente.fechaNacimiento || null,
+    sexo: paciente.sexo,
+    email: paciente.email,
+    foto: paciente.foto,
+    estadoCivil: paciente.estadoCivil,
+    ocupacion: paciente.ocupacion,
+    domicilios: paciente.domicilios || []
+  };
+
+
+  this.authService.modificarPaciente(id, updatePacienteDto).subscribe({
+      next: (response) => {
+          console.log('Lista de pacientes:', response);
+          this.pacientes = response; // Assuming `pacientes` is where you store the list
+          this.pacientes.forEach(element => {
+          element.edad = this.calcularEdad(element.fechaNacimiento)
+          });
+          this.applyFilter(); // Refresh the list if necessary
+      },
+      error: (error) => {
+          this.matSnackBar.open(error.error.message, 'Close', {
+              duration: 5000,
+              horizontalPosition: 'center',
+          });
+      },
+  });
+}
+
+calcularEdad(fechaNacimiento?: Date ): number | null {
+  if (!fechaNacimiento) return null;
+
+  const hoy = new Date();
+  const nacimiento = new Date(fechaNacimiento);
+  let edad = hoy.getFullYear() - nacimiento.getFullYear();
+  const m = hoy.getMonth() - nacimiento.getMonth();
+
+  if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+    edad--;
+  }
+
+  return edad;
+}
+
+// Método para editar paciente
+asdasd(id: number) {
+  // Navegar a la página de edición o abrir un modal de edición
+  console.log('Editar paciente con ID:', id);
+  // Ejemplo: this.router.navigate(['/editar', id]);
+}
+
+// Método para eliminar paciente
+eliminarPaciente(id: number) {
+  if (confirm('¿Estás seguro de que quieres eliminar este paciente?')) {
+    // Lógica para eliminar el paciente
+    console.log('Eliminar paciente con ID:', id);
+    // Ejemplo: this.pacienteService.eliminarPaciente(id).subscribe(...);
+  }
 }
 
 
