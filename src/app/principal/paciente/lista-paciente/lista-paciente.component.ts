@@ -1,8 +1,15 @@
-import { Paciente } from './../../perfil/interface';
-import { Component, OnInit } from '@angular/core';
+import { Paciente } from './../../../interfaces/paciente';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 
 import { animate, style, transition, trigger } from '@angular/animations';
+import { ApiService } from '../../../services/api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-paciente',
@@ -18,21 +25,15 @@ import { animate, style, transition, trigger } from '@angular/animations';
   ]
 })
 export class ListaPacienteComponent implements OnInit {
-  pacientes: Paciente[] = [
-    { id: 1, nombre: 'Juan Pérez', edad: 30, email: 'juan.perez@example.com' },
-    { id: 2, nombre: 'Ana Gómez', edad: 25, email: 'ana.gomez@example.com' },
-    { id: 3, nombre: 'Luis Fernández', edad: 40, email: 'luis.fernandez@example.com' },
-    { id: 4, nombre: 'Marta Sanchez', edad: 30, email: 'marta.sanchez@example.com' },
-    { id: 5, nombre: 'Carolina Montes', edad: 25, email: 'carolina.montes@example.com' },
-    { id: 6, nombre: 'Junit Kim', edad: 40, email: 'junit.kim@example.com' },
-    { id: 7, nombre: 'Juan Pérez', edad: 30, email: 'juan.perez@example.com' },
-    { id: 8, nombre: 'Natalia Lopez', edad: 25, email: 'natalia.lopez@example.com' },
-    { id: 9, nombre: 'Carmen Luz', edad: 40, email: 'carmen.luz@example.com' },
-    { id: 10, nombre: 'Tereza Martinez', edad: 30, email: 'tereza.martinez@example.com' },
-    { id: 11, nombre: 'Jose Luis', edad: 25, email: 'jose.luis@example.com' },
-    { id: 12, nombre: 'Ulises Monte', edad: 40, email: 'ulises.monte@example.com' }
-    // Agrega más pacientes si es necesario
-  ];
+
+  authService = inject(ApiService);
+  matSnackBar = inject(MatSnackBar);
+  routerr = inject(Router);
+  hide = true;
+  form!: FormGroup;
+  fb = inject(FormBuilder);
+
+  pacientes: Paciente[]= [];
   paginatedPacientes: Paciente[] = [];
   searchTerm: string = '';
   currentPage: number = 1;
@@ -44,6 +45,7 @@ export class ListaPacienteComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    this.listaPacientePsicologo();
     this.applyFilter(); // Inicializa la lista de pacientes con paginación y filtro
   }
 
@@ -78,4 +80,24 @@ export class ListaPacienteComponent implements OnInit {
   getPagesArray() {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
+
+
+  listaPacientePsicologo() {
+    const id = 1; // Replace with the actual ID you want to pass
+    this.authService.getPacientePsicologo(id).subscribe({
+        next: (response) => {
+            console.log('Lista de pacientes:', response);
+            this.pacientes = response; // Assuming `pacientes` is where you store the list
+            this.applyFilter(); // Refresh the list if necessary
+        },
+        error: (error) => {
+            this.matSnackBar.open(error.error.message, 'Close', {
+                duration: 5000,
+                horizontalPosition: 'center',
+            });
+        },
+    });
+}
+
+
 }

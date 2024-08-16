@@ -9,6 +9,7 @@ import { RegisterRequest } from '../interfaces/register-request';
 import { UserDetail } from '../interfaces/user-detail';
 import { ResetPasswordRequest } from '../interfaces/reset-password-request';
 import { ChangePasswordRequest } from '../interfaces/change-password-request';
+import { Paciente } from '../interfaces/paciente';
 
 @Injectable({
   providedIn: 'root'
@@ -116,4 +117,10 @@ export class ApiService {
     const userDetail: AuthResponse = JSON.parse(user);
     return userDetail.refreshToken;
   };
+
+
+  /* paciente */
+  getPacientePsicologo = (id: number): Observable<Paciente[]> =>
+    this.http.get<Paciente[]>(`${this.apiUrl}Paciente/paciente/${id}/profesionales`);
+
 }
