@@ -1,9 +1,10 @@
+import { Paciente } from './../../perfil/interface';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Route, ActivatedRoute, Router } from '@angular/router';
-import { Paciente } from '../../perfil/interface';
 import { Cita } from '../../../interfaces/cita';
-
+import { PacienteService } from '../../../services/paciente.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-detalle-paciente',
@@ -11,12 +12,10 @@ import { Cita } from '../../../interfaces/cita';
   styleUrl: './detalle-paciente.component.css'
 })
 export class DetallePacienteComponent  implements OnInit {
-  paciente: Paciente = {
-    id: 1,
-    nombre: 'Juan Pérez',
-    edad: 30,
-    email: 'juan.perez@example.com'
-  };
+  paciente?: Paciente
+  idPaciente: number | null = null;
+  pacienteService = inject(PacienteService);
+  matSnackBar = inject(MatSnackBar);
 
   citas: Cita[] = [
     { fecha: '2024-08-12', hora: '09:00', descripcion: 'Revisión general' },
@@ -26,11 +25,52 @@ export class DetallePacienteComponent  implements OnInit {
 
   editMode: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
 
   ngOnInit(): void {
-    // Aquí podrías cargar los datos del paciente y sus citas desde un servicio
+    // Obtener el parámetro de la ruta
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      this.idPaciente = id ? +id : null; // Convertir el id a número
+      if (this.idPaciente) {
+        this.pacienteService.getPaciente(this.idPaciente).subscribe({
+          next: (response) => {
+
+              console.log('paciente:', response);
+              this.paciente = response; // Assuming `pacientes` is where you store the list
+              this.paciente.edad = this.calcularEdad(this.paciente.fechaNacimiento);
+              console.log('paciente obj:', response);
+          },
+          error: (error) => {
+              this.matSnackBar.open(error.error.message, 'Close', {
+                  duration: 5000,
+                  horizontalPosition: 'center',
+              });
+          },
+      });
+        console.log('ID del paciente:', this.idPaciente);
+      } else {
+        console.error('ID de paciente no definido');
+      }
+    });
   }
+
+  calcularEdad(fechaNacimiento?: Date ): number | null {
+    if (!fechaNacimiento) return null;
+
+    const hoy = new Date();
+    const nacimiento = new Date(fechaNacimiento);
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const m = hoy.getMonth() - nacimiento.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+      edad--;
+    }
+
+    return edad;
+  }
+
 
   activarEdicion(): void {
     this.editMode = true;
@@ -49,7 +89,30 @@ export class DetallePacienteComponent  implements OnInit {
 
   eliminarPaciente(): void {
     // Implementa la lógica para eliminar la información del paciente
-    console.log('Eliminar paciente:', this.paciente);
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      this.idPaciente = id ? +id : null; // Convertir el id a número
+      if (this.idPaciente) {
+        this.pacienteService.deletePaciente(this.idPaciente).subscribe({
+          next: (response) => {
+
+            this.matSnackBar.open("Paciente Eliminado", 'Close', {
+              duration: 5000,
+              horizontalPosition: 'center',
+            });
+          },
+          error: (error) => {
+              this.matSnackBar.open(error.error.message, 'Close', {
+                  duration: 5000,
+                  horizontalPosition: 'center',
+              });
+          },
+      });
+        console.log('ID del paciente:', this.idPaciente);
+      } else {
+        console.error('ID de paciente no definido');
+      }
+    });
     // Luego, puedes redirigir a la lista de pacientes después de eliminar
     this.router.navigate(['/paciente']);
   }

@@ -20,7 +20,18 @@ import { CitasDetalleComponent } from './citas/citas-detalle/citas-detalle.compo
 import { RegistroCitasComponent } from './citas/registro-citas/registro-citas.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { DiarioPrincipalComponent } from './diario/diario-principal/diario-principal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { EditarPacienteComponent } from './modals/editar-paciente/editar-paciente.component';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 
+registerLocaleData(localeEs, 'es');
 @NgModule({ declarations: [
         HomeComponent,
         GaleriaComponent,
@@ -35,7 +46,8 @@ import { DiarioPrincipalComponent } from './diario/diario-principal/diario-princ
         DetallePacienteComponent,
         DetalleDiarioComponent,
         PrincipalDiarioComponent,
-        EmocionesDiarioComponent
+        EmocionesDiarioComponent,
+        EditarPacienteComponent
     ],
     exports: [
         HomeComponent,
@@ -57,7 +69,13 @@ import { DiarioPrincipalComponent } from './diario/diario-principal/diario-princ
         FormsModule,
         ReactiveFormsModule,
         FullCalendarModule,
-      ], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+      ], providers: [provideHttpClient(withInterceptorsFromDi()),{ provide: LOCALE_ID, useValue: 'es' }] })
 
 export class PrincipalModule   {
 

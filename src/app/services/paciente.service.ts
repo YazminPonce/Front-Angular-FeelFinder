@@ -10,6 +10,7 @@ import { UserDetail } from '../interfaces/user-detail';
 import { ResetPasswordRequest } from '../interfaces/reset-password-request';
 import { ChangePasswordRequest } from '../interfaces/change-password-request';
 import { LinkRequest } from '../interfaces/link-request';
+import { Paciente } from '../interfaces/paciente';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,14 @@ export class PacienteService {
   linkPaciente(data: LinkRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}paciente/link`, data);
   }
+
+  getPaciente = (id : number): Observable<Paciente> =>
+    this.http.get<Paciente>(`${this.apiUrl}Paciente/pacientes/${id}`);
+
+
+  deletePaciente = (id : number): Observable<Paciente> =>
+    this.http.delete<Paciente>(`${this.apiUrl}Paciente/eliminar-paciente/${id}`);
+
 
   getDetail = (): Observable<UserDetail> =>
     this.http.get<UserDetail>(`${this.apiUrl}account/detail`);

@@ -22,16 +22,8 @@
     <tbody>
       <tr *ngFor="let paciente of paginatedPacientes" (click)="seleccionarPaciente(paciente)">
         <td>{{ paciente.nombre + " " + paciente.apellidoPaterno + " " + paciente.apellidoMaterno }}</td>
-        <td>{{ paciente.fechaNacimiento }}</td>
+        <td>{{ paciente.edad }}</td>
         <td>{{ paciente.email }}</td>
-        <!-- Nueva columna para Editar -->
-        <td>
-          <button (click)="editarPaciente(paciente)" class="btn btn-primary">Editar</button>
-        </td>
-        <!-- Nueva columna para Eliminar -->
-        <td>
-          <button (click)="eliminarPaciente(paciente)" class="btn btn-danger">Eliminar</button>
-        </td>
       </tr>
     </tbody>
   </table>

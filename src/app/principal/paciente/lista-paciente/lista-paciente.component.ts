@@ -11,6 +11,8 @@ import { ApiService } from '../../../services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UpdatePacienteDto } from '../../../interfaces/UpdatePacienteDto';
+import { EditarPacienteComponent } from '../../modals/editar-paciente/editar-paciente.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-lista-paciente',
@@ -52,7 +54,6 @@ export class ListaPacienteComponent implements OnInit {
 
 
 
-
   applyFilter() {
     const filterValue = this.searchTerm.toLowerCase();
     const filteredPacientes = this.pacientes.filter(paciente =>
@@ -72,7 +73,12 @@ export class ListaPacienteComponent implements OnInit {
   }
 
   seleccionarPaciente(paciente: Paciente) {
-    this.router.navigate(['/detalle-paciente', paciente.id]);
+    if (paciente && paciente.idPaciente) {
+      this.router.navigate(['/detalle-paciente', paciente.idPaciente]);
+    } else {
+      console.error('Paciente o ID de paciente no definido:', paciente);
+      // Manejar el error de forma adecuada
+    }
   }
 
 
@@ -88,10 +94,14 @@ export class ListaPacienteComponent implements OnInit {
 
   listaPacientePsicologo() {
     const id = 1; // Replace with the actual ID you want to pass
-    this.authService.getPacientePsicologo(id).subscribe({
+    this.authService.getPacientePsicologo().subscribe({
         next: (response) => {
             console.log('Lista de pacientes:', response);
             this.pacientes = response; // Assuming `pacientes` is where you store the list
+            this.pacientes.forEach(element => {
+              element.edad = this.calcularEdad(element.fechaNacimiento);
+            });
+            console.log(this.pacientes)
             this.applyFilter(); // Refresh the list if necessary
         },
         error: (error) => {
@@ -104,42 +114,7 @@ export class ListaPacienteComponent implements OnInit {
 }
 
 
-editarPaciente(paciente: Paciente) {
-  const id = paciente.id
-
-  // Crear el DTO con la información del paciente
-  const updatePacienteDto: UpdatePacienteDto = {
-    nombre: paciente.nombre,
-    apellidoPaterno: paciente.apellidoPaterno,
-    apellidoMaterno: paciente.apellidoMaterno,
-    telefono: paciente.telefono,
-    fechaNacimiento: paciente.fechaNacimiento || null,
-    sexo: paciente.sexo,
-    email: paciente.email,
-    foto: paciente.foto,
-    estadoCivil: paciente.estadoCivil,
-    ocupacion: paciente.ocupacion,
-    domicilios: paciente.domicilios || []
-  };
-
-
-  this.authService.modificarPaciente(id, updatePacienteDto).subscribe({
-      next: (response) => {
-          console.log('Lista de pacientes:', response);
-          this.pacientes = response; // Assuming `pacientes` is where you store the list
-          this.pacientes.forEach(element => {
-          element.edad = this.calcularEdad(element.fechaNacimiento)
-          });
-          this.applyFilter(); // Refresh the list if necessary
-      },
-      error: (error) => {
-          this.matSnackBar.open(error.error.message, 'Close', {
-              duration: 5000,
-              horizontalPosition: 'center',
-          });
-      },
-  });
-}
+//aqui iba
 
 calcularEdad(fechaNacimiento?: Date ): number | null {
   if (!fechaNacimiento) return null;

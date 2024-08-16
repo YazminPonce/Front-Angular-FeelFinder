@@ -1,5 +1,5 @@
 export interface Paciente  {
-  id: number;
+  idPaciente: number;
   nombre: string;
   apellidoPaterno: string ;
   apellidoMaterno: string ;

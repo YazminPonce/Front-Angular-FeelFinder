@@ -121,8 +121,8 @@ export class ApiService {
 
 
   /* paciente */
-  getPacientePsicologo = (id: number): Observable<Paciente[]> =>
-    this.http.get<Paciente[]>(`${this.apiUrl}Paciente/profesional/${id}/pacientes`);
+  getPacientePsicologo = (): Observable<Paciente[]> =>
+    this.http.get<Paciente[]>(`${this.apiUrl}Paciente/profesional/pacientes`);
 
   eliminarPaciente(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}Paciente/eliminar-paciente/${id}`);

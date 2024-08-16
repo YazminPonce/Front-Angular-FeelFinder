@@ -9,15 +9,15 @@
         <form (ngSubmit)="guardarCambios()" #pacienteForm="ngForm">
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" id="nombre" class="form-control" [(ngModel)]="paciente.nombre" name="nombre" required>
+            <input type="text" id="nombre" class="form-control" [(ngModel)]="paciente!.nombre" name="nombre" required>
           </div>
           <div class="mb-3">
             <label for="edad" class="form-label">Edad</label>
-            <input type="number" id="edad" class="form-control" [(ngModel)]="paciente.edad" name="edad" required>
+            <input type="number" id="edad" class="form-control" [(ngModel)]="paciente!.edad" name="edad" required>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" class="form-control" [(ngModel)]="paciente.email" name="email" required>
+            <input type="email" id="email" class="form-control" [(ngModel)]="paciente!.email" name="email" required>
           </div>
           <button type="submit" class="btn btn-primary">Guardar Cambios</button>
           <button type="button" class="btn btn-secondary ms-2" (click)="cancelarEdicion()">Cancelar</button>
@@ -26,9 +26,9 @@
 
       <div *ngIf="!editMode" class="mb-4">
         <h4>Paciente</h4>
-        <p><strong>Nombre:</strong> {{ paciente.nombre }}</p>
-        <p><strong>Edad:</strong> {{ paciente.edad }}</p>
-        <p><strong>Email:</strong> {{ paciente.email }}</p>
+        <p><strong>Nombre:</strong> {{ paciente?.nombre + " " + paciente?.apellidoMaterno + " " + paciente?.apellidoPaterno}}</p>
+        <p><strong>Edad:</strong> {{ paciente?.edad }}</p>
+        <p><strong>Fecha de Registro:</strong> {{ paciente?.fechaRegistro | date: 'fullDate' }}</p>
         <button class="btn btn-warning btn-sm me-2" (click)="activarEdicion()">
           <i class="bi bi-pencil"></i> Modificar Paciente
         </button>
