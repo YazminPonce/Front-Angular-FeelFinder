@@ -33,7 +33,6 @@ import { DiarioPrincipalComponent } from './diario/diario-principal/diario-princ
         PerfilComponent,
         DiarioPrincipalComponent,
         DetallePacienteComponent,
-        AgregarPacienteComponent,
         DetalleDiarioComponent,
         PrincipalDiarioComponent,
         EmocionesDiarioComponent
@@ -50,7 +49,6 @@ import { DiarioPrincipalComponent } from './diario/diario-principal/diario-princ
         DiarioPrincipalComponent,
         ListaPacienteComponent,
         DetallePacienteComponent,
-        AgregarPacienteComponent,
         DetalleDiarioComponent,
         PrincipalDiarioComponent,
         EmocionesDiarioComponent

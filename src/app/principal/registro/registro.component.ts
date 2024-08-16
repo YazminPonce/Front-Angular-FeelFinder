@@ -73,7 +73,7 @@ export class RegistroComponent {
         email: ['', [Validators.required, Validators.email]],
         nombre: ['', Validators.required],
         apellidoMaterno: ['', Validators.required],
-        apellidoPaterno: ['', Validators.required],
+        apellidoPaterno: [''],
         sexo: ['', Validators.required],
         fechaNacimiento: ['', Validators.required],
         estadoCivil: ['', Validators.required],
