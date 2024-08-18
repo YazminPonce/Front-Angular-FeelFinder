@@ -5,7 +5,8 @@
       <p class="card-text">{{ diario.fecha | date }}</p>
       <p class="card-text">{{ diario.descripcion }}</p>
       <p class="card-text"><strong>Emoción:</strong> {{ diario.emocion }}</p>
-      <a routerLink="/diarios" class="btn btn-secondary">Regresar</a>
+      <a  [routerLink]="['/diario']"  class="btn btn-secondary" style="cursor: pointer;
+">Regresar</a>
     </div>
   </div>
 </div>

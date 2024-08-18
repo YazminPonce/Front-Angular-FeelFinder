@@ -30,7 +30,7 @@ export const routes: Routes = [
   { path: 'detalle-paciente/:id', component: DetallePacienteComponent },
   { path: 'agregar', component: AgregarPacienteComponent },
   { path: 'diario', component: PrincipalDiarioComponent },
-  { path: 'detalle-diario/id', component: DetalleDiarioComponent }
+  { path: 'detalle-diario', component: DetalleDiarioComponent }
 
 
 ];

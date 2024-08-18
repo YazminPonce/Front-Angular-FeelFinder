@@ -16,14 +16,14 @@
       <tr>
         <th>Nombre</th>
         <th>Edad</th>
-        <th>Email</th>
+        <th>Teléfono</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let paciente of paginatedPacientes" (click)="seleccionarPaciente(paciente)">
         <td>{{ paciente.nombre + " " + paciente.apellidoPaterno + " " + paciente.apellidoMaterno }}</td>
         <td>{{ paciente.edad }}</td>
-        <td>{{ paciente.email }}</td>
+        <td>{{ paciente.telefono }}</td>
       </tr>
     </tbody>
   </table>

@@ -14,7 +14,7 @@
           <h5 class="card-title mt-3">{{ diario.titulo }}</h5>
           <p class="card-text">{{ diario.fecha | date }}</p>
           <p class="card-text">{{ diario.descripcion }}</p>
-          <a [routerLink]="['/detalle-diario', diario.id]" class="btn btn-primary">Ver Más</a>
+          <a [routerLink]="['/detalle-diario']" class="btn btn-primary">Ver Más</a>
         </div>
       </div>
     </div>

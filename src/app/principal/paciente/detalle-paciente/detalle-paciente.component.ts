@@ -115,6 +115,7 @@ export class DetallePacienteComponent  implements OnInit {
     });
     // Luego, puedes redirigir a la lista de pacientes después de eliminar
     this.router.navigate(['/paciente']);
+
   }
 
   agregarCita(): void {
