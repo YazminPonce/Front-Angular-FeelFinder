@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { PacienteService } from '../../../services/paciente.service'; // Servicio para manejar citas
 
 @Component({
   selector: 'app-citas-detalle',
   templateUrl: './citas-detalle.component.html',
-  styleUrl: './citas-detalle.component.css'
+  styleUrls: ['./citas-detalle.component.css']
 })
-
 export class CitasDetalleComponent implements OnInit {
   citaId: string | null = null;
-  citaEstado: string = 'en espera'; // Estado de la cita (puede ser 'en espera', 'aceptada', etc.)
-  reprogramarForm: FormGroup; // Debe ser de tipo FormGroup
-  showReprogramar: boolean = false; // Controla la visibilidad del formulario
+  citaEstado: string = ''; // Estado de la cita
+  reprogramarForm: FormGroup;
+  showReprogramar: boolean = false;
+  citaDetails: any = {}; // Detalles de la cita
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private citaService: PacienteService
   ) {
-    // Inicialización correcta del FormGroup
     this.reprogramarForm = this.fb.group({
       nuevaFecha: [''],
       nuevaHora: ['']
@@ -29,14 +29,22 @@ export class CitasDetalleComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.citaId = params.get('id'); // Obtén el ID de la URL
-      // Usa el ID para cargar los detalles de la cita
-      // Configura el estado de la cita según los datos cargados
+      this.citaId = params.get('id');
+      this.loadCitaDetails(); // Carga los detalles de la cita
     });
   }
 
+  loadCitaDetails() {
+    if (this.citaId) {
+      this.citaService.getCitaById(this.citaId).subscribe((cita: any) => {
+        this.citaDetails = cita;
+        this.citaEstado = cita.estatus;
+      });
+    }
+  }
+
   goBack() {
-    this.router.navigate(['/citaPrincipal']); // Navega a la vista principal
+    this.router.navigate(['/citaPrincipal']);
   }
 
   toggleReprogramar() {
@@ -46,9 +54,12 @@ export class CitasDetalleComponent implements OnInit {
   reprogramar() {
     const nuevaFecha = this.reprogramarForm.value.nuevaFecha;
     const nuevaHora = this.reprogramarForm.value.nuevaHora;
-    // Lógica para actualizar la cita con la nueva fecha y hora
-    console.log(`Reprogramar cita ${this.citaId} a ${nuevaFecha} ${nuevaHora}`);
-    // Navega de regreso al calendario o muestra un mensaje de éxito
-    this.goBack();
+
+    if (this.citaId) {
+      this.citaService.reprogramarCita(this.citaId, nuevaFecha, nuevaHora).subscribe(() => {
+        console.log(`Cita ${this.citaId} reprogramada a ${nuevaFecha} ${nuevaHora}`);
+        this.goBack(); // Navegar de regreso al calendario después de reprogramar
+      });
+    }
   }
 }

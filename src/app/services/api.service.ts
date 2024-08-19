@@ -11,6 +11,7 @@ import { ResetPasswordRequest } from '../interfaces/reset-password-request';
 import { ChangePasswordRequest } from '../interfaces/change-password-request';
 import { Paciente } from '../interfaces/paciente';
 import { UpdatePacienteDto } from '../interfaces/UpdatePacienteDto';
+import { DiariosPaciente } from '../interfaces/entrada';
 
 @Injectable({
   providedIn: 'root'
@@ -131,4 +132,10 @@ export class ApiService {
   modificarPaciente(id: number, updatePacienteDto: UpdatePacienteDto): Observable<any> {
     return this.http.put(`${this.apiUrl}Paciente/modificar-paciente/${id}`, updatePacienteDto);
   }
+  getListaDiarios = (id: number): Observable<DiariosPaciente[]> =>
+    this.http.get<DiariosPaciente[]>(`${this.apiUrl}Diario/paciente/${id}/diarios`);
+
+  getDiario = (id: number): Observable<DiariosPaciente> =>
+    this.http.get<DiariosPaciente>(`${this.apiUrl}Diario/diario/${id}`);
+
 }

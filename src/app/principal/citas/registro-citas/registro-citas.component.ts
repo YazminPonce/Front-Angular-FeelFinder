@@ -1,40 +1,87 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PacienteService } from '../../../services/paciente.service'; // Asegúrate de tener un servicio que gestione pacientes
+import { PacienteView } from '../../../interfaces/pacienteView'; // Modelo de datos para el paciente
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ValidationError } from '../../../interfaces/validation-error';
 
 @Component({
   selector: 'app-registro-citas',
   templateUrl: './registro-citas.component.html',
-  styleUrl: './registro-citas.component.css'
+  styleUrls: ['./registro-citas.component.css']
 })
 export class RegistroCitasComponent implements OnInit {
-  selectedDate: string | null = null;
+  fecha: string | null = null;
+  errors!: ValidationError[];
   appointmentForm: FormGroup;
+  pacientes: PacienteView[] = []; // Lista de pacientes
+
+  authService = inject(PacienteService);
+  matSnackbar = inject(MatSnackBar);
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private pacienteService: PacienteService // Inyecta el servicio de pacientes
   ) {
     this.appointmentForm = this.fb.group({
-      patientName: [''],
-      appointmentTime: ['']
+      idPaciente: ['', Validators.required], // Campo para seleccionar paciente
+      horario: ['', Validators.required],
+      fecha: ['', Validators.required] // Asegúrate de que el campo fecha esté incluido y tenga un valor
     });
   }
 
-  goBack() {
-    this.router.navigate(['/citaPrincipal']); // Navega a la vista principal
-  }
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.selectedDate = params.get('date'); // Obtén la fecha seleccionada de la URL
+      this.fecha = params.get('date'); // Obtén la fecha seleccionada de la URL
+      if (this.fecha) {
+        this.appointmentForm.patchValue({ fecha: this.fecha }); // Establece la fecha seleccionada en el formulario
+      }
+    });
+
+    // Obtén la lista de pacientes
+    this.pacienteService.getPacientes().subscribe((data: PacienteView[]) => {
+      this.pacientes = data;
     });
   }
 
   registerAppointment() {
-    const formData = this.appointmentForm.value;
-    console.log(`Cita registrada para ${formData.patientName} el ${this.selectedDate} a las ${formData.appointmentTime}`);
-    // Lógica para registrar la cita...
-    this.router.navigate(['/calendario']); // Navega de regreso al calendario
+    if (this.appointmentForm.valid) {
+      const formData = this.appointmentForm.value;
+      console.log(`Cita registrada para el paciente con ID ${formData.idPaciente} el ${formData.fecha} a las ${formData.horario}`);
+
+      // Lógica para enviar los datos a la API
+      this.authService.registerAppoiment(formData).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.matSnackbar.open(response.message, 'Close', {
+            duration: 5000,
+            horizontalPosition: 'center',
+          });
+          this.router.navigate(['/citaPrincipal']);
+        },
+        error: (err: HttpErrorResponse) => {
+          if (err.status === 400) {
+            this.matSnackbar.open('Validation error', 'Close', {
+              duration: 5000,
+              horizontalPosition: 'center',
+            });
+          }
+        },
+        complete: () => console.log('Register success'),
+      });
+    } else {
+      this.matSnackbar.open('Complete todos los campos requeridos.', 'Close', {
+        duration: 5000,
+        horizontalPosition: 'center',
+      });
+    }
+  }
+
+  goBack() {
+    this.router.navigate(['/citaPrincipal']); // Navega a la vista principal
   }
 }

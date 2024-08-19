@@ -11,6 +11,8 @@ import { ResetPasswordRequest } from '../interfaces/reset-password-request';
 import { ChangePasswordRequest } from '../interfaces/change-password-request';
 import { LinkRequest } from '../interfaces/link-request';
 import { Paciente } from '../interfaces/paciente';
+import { UpdatePacienteDto } from '../interfaces/UpdatePacienteDto';
+import { PacienteView } from '../interfaces/pacienteView';
 
 @Injectable({
   providedIn: 'root'
@@ -119,4 +121,31 @@ export class PacienteService {
     const userDetail: AuthResponse = JSON.parse(user);
     return userDetail.refreshToken;
   };
+
+    // Método para modificar un paciente
+    modificarPaciente(id: number, updatePacienteDto: UpdatePacienteDto): Observable<any> {
+      return this.http.put(`${this.apiUrl}Paciente/modificar-paciente/${id}`, updatePacienteDto);
+    }
+
+
+    getPacientes(): Observable<PacienteView[]> {
+      return this.http.get<PacienteView[]>(`${this.apiUrl}Paciente/profesional/pacientes/`);
+    }
+
+    registerAppoiment(data: RegisterRequest): Observable<AuthResponse> {
+      return this.http.post<AuthResponse>(`${this.apiUrl}Cita/registrar-cita`, data);
+    }
+    getCitas(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrl}Cita/profesional/citas`);
+    }
+
+    getCitaById(id: string): Observable<any> {
+      return this.http.get<any>(`${this.apiUrl}Cita/cita/${id}`);
+    }
+
+    reprogramarCita(id: string, nuevaFecha: string, nuevaHora: string): Observable<any> {
+      const body = { Fecha: nuevaFecha, Horario: nuevaHora };
+      return this.http.put<any>(`${this.apiUrl}Cita/cita/${id}/reagendar`, body);
+    }
+
 }

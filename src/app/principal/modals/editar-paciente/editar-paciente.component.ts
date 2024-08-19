@@ -20,7 +20,6 @@ export class EditarPacienteComponent {
       nombre: [data.nombre, Validators.required],
       apellidoPaterno: [data.apellidoPaterno, Validators.required],
       apellidoMaterno: [data.apellidoMaterno, Validators.required],
-      email: [data.email, [Validators.required, Validators.email]],
       telefono: [data.telefono, Validators.required],
       fechaNacimiento: [data.fechaNacimiento, Validators.required],
       // Agrega más controles según sea necesario

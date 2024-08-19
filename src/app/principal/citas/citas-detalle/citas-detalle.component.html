@@ -2,38 +2,34 @@
   <h1 class="mb-4 text-center">Detalles de la Cita</h1>
 
   <div class="row justify-content-center">
-    <!-- Columna de detalles de la cita -->
     <div class="col-md-5 mb-4">
       <div class="card shadow-sm">
         <div class="card-body">
           <h5 class="card-title text-primary">ID de la cita</h5>
-          <p class="card-text">{{ citaId }}</p>
+          <p class="card-text">{{ citaDetails.id }}</p>
 
           <h5 class="card-title text-primary">Paciente</h5>
-          <p class="card-text">Sandra Martinez</p>
+          <p class="card-text">{{ citaDetails.asignacionPaciente.paciente.persona.nombre }}</p>
 
           <h5 class="card-title text-primary">Fecha</h5>
-          <p class="card-text">10/03/2024</p>
+          <p class="card-text">{{ citaDetails.fecha | date }}</p>
 
           <h5 class="card-title text-primary">Hora</h5>
-          <p class="card-text">10:30 PM</p>
+          <p class="card-text">{{ citaDetails.horario }}</p>
 
           <h5 class="card-title text-primary">Estado de la cita</h5>
           <p class="card-text">{{ citaEstado }}</p>
 
-          <!-- Botón para regresar al calendario -->
           <button class="btn btn-primary w-100 mt-3" (click)="goBack()">Volver al Calendario</button>
         </div>
       </div>
     </div>
 
-    <!-- Columna de reprogramación de la cita -->
     <div *ngIf="citaEstado === 'en espera'" class="col-md-5 d-flex flex-column align-items-start">
       <button class="btn btn-secondary mb-3" (click)="toggleReprogramar()">
         {{ showReprogramar ? 'Cancelar Reprogramación' : 'Reprogramar Cita' }}
       </button>
 
-      <!-- Formulario de reprogramación -->
       <div *ngIf="showReprogramar" class="card w-100 mt-2 shadow-sm">
         <div class="card-body">
           <form [formGroup]="reprogramarForm" (ngSubmit)="reprogramar()">

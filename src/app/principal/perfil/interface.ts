@@ -6,6 +6,9 @@ export interface Paciente {
   email: string ;
   telefono: string ;
   fechaNacimiento?: Date;
+  fechaDisplay?: string;
+  direccion?: string;
+  notasAdicionales?: string;
   fechaRegistro?: Date;
   sexo: string ;
   foto: string;

@@ -118,6 +118,7 @@ export class AgregarPacienteComponent {
         fechaNacimiento: ['', Validators.required],
         estadoCivil: ['', Validators.required],
         ocupacion: ['', Validators.required],
+        direccion: ['', Validators.required],
         notasAdicionales: [''],
         roles: [['paciente']],
         password: ['', [Validators.required, Validators.minLength(8)]],

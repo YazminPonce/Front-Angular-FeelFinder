@@ -30,6 +30,7 @@ import { EditarPacienteComponent } from './modals/editar-paciente/editar-pacient
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { DiarioDetalleComponent } from './diario/diario-detalle/diario-detalle.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({ declarations: [
@@ -47,7 +48,8 @@ registerLocaleData(localeEs, 'es');
         DetalleDiarioComponent,
         PrincipalDiarioComponent,
         EmocionesDiarioComponent,
-        EditarPacienteComponent
+        EditarPacienteComponent,
+        DiarioDetalleComponent
     ],
     exports: [
         HomeComponent,

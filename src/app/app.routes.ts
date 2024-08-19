@@ -13,6 +13,7 @@ import { DetallePacienteComponent } from './principal/paciente/detalle-paciente/
 import { AgregarPacienteComponent } from './principal/paciente/agregar-paciente/agregar-paciente.component';
 import { DetalleDiarioComponent } from './principal/diario/detalle-diario/detalle-diario.component';
 import { PrincipalDiarioComponent } from './principal/diario/principal-diario/principal-diario.component';
+import { DiarioDetalleComponent } from './principal/diario/diario-detalle/diario-detalle.component';
 
 
 export const routes: Routes = [
@@ -29,8 +30,8 @@ export const routes: Routes = [
   { path: 'paciente', component: ListaPacienteComponent },
   { path: 'detalle-paciente/:id', component: DetallePacienteComponent },
   { path: 'agregar', component: AgregarPacienteComponent },
-  { path: 'diario', component: PrincipalDiarioComponent },
-  { path: 'detalle-diario', component: DetalleDiarioComponent }
+  { path: 'diario/:id', component: PrincipalDiarioComponent },
+  { path: 'detalle-diario/:id', component: DiarioDetalleComponent }
 
 
 ];

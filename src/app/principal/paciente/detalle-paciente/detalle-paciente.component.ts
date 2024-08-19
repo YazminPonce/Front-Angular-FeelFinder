@@ -5,6 +5,7 @@ import { Route, ActivatedRoute, Router } from '@angular/router';
 import { Cita } from '../../../interfaces/cita';
 import { PacienteService } from '../../../services/paciente.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UpdatePacienteDto } from '../../../interfaces/UpdatePacienteDto';
 
 @Component({
   selector: 'app-detalle-paciente',
@@ -40,6 +41,7 @@ export class DetallePacienteComponent  implements OnInit {
               console.log('paciente:', response);
               this.paciente = response; // Assuming `pacientes` is where you store the list
               this.paciente.edad = this.calcularEdad(this.paciente.fechaNacimiento);
+              this.paciente.fechaDisplay = this.paciente.fechaNacimiento!.toString().split('T')[0]; // "2024-08-30"
               console.log('paciente obj:', response);
           },
           error: (error) => {
@@ -80,12 +82,39 @@ export class DetallePacienteComponent  implements OnInit {
     this.editMode = false;
   }
 
-  guardarCambios(): void {
-    // Implementa la lógica para guardar los cambios del paciente
-    console.log('Guardar cambios del paciente:', this.paciente);
-    // Luego, puedes desactivar el modo de edición
-    this.editMode = false;
+  // detalle-paciente.component.ts
+guardarCambios(): void {
+  if (this.paciente && this.idPaciente !== null) {
+    const updatePacienteDto: UpdatePacienteDto = {
+      nombre: this.paciente.nombre!,
+      apellidoPaterno: this.paciente.apellidoPaterno!,
+      apellidoMaterno: this.paciente.apellidoMaterno!,
+      telefono: this.paciente.telefono!,
+      fechaNacimiento: new Date(this.paciente.fechaDisplay!),
+      sexo: this.paciente.sexo!,
+      estadoCivil: this.paciente.estadoCivil!,
+      ocupacion: this.paciente.ocupacion!,
+      // Añadir otros campos si es necesario
+    };
+    console.log(this.idPaciente);
+    console.log(updatePacienteDto);
+    this.pacienteService.modificarPaciente(this.idPaciente, updatePacienteDto).subscribe({
+      next: (response) => {
+        this.matSnackBar.open('Paciente modificado exitosamente', 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center',
+        });
+        this.editMode = false; // Salir del modo de edición
+      },
+      error: (error) => {
+        this.matSnackBar.open('Error al modificar el paciente: ' + error.message, 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center',
+        });
+      },
+    });
   }
+}
 
   eliminarPaciente(): void {
     // Implementa la lógica para eliminar la información del paciente

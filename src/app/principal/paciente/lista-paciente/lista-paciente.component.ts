@@ -74,6 +74,7 @@ export class ListaPacienteComponent implements OnInit {
 
   seleccionarPaciente(paciente: Paciente) {
     if (paciente && paciente.idPaciente) {
+      console.log(paciente)
       this.router.navigate(['/detalle-paciente', paciente.idPaciente]);
     } else {
       console.error('Paciente o ID de paciente no definido:', paciente);
@@ -93,7 +94,6 @@ export class ListaPacienteComponent implements OnInit {
 
 
   listaPacientePsicologo() {
-    const id = 1; // Replace with the actual ID you want to pass
     this.authService.getPacientePsicologo().subscribe({
         next: (response) => {
             console.log('Lista de pacientes:', response);

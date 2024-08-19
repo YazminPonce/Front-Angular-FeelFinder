@@ -3,20 +3,25 @@
 
   <div class="card mx-auto" style="max-width: 500px;">
     <div class="card-body">
-      <h5 class="card-title">Fecha Seleccionada: {{ selectedDate }}</h5>
+      <h5 class="card-title">Fecha Seleccionada: {{ fecha }}</h5>
       <form [formGroup]="appointmentForm" (ngSubmit)="registerAppointment()">
         <div class="mb-3">
-          <label for="patientName" class="form-label">Nombre del Paciente:</label>
-          <input id="patientName" type="text" formControlName="patientName" class="form-control" required>
+          <label for="idPaciente" class="form-label">Seleccionar Paciente:</label>
+          <select id="idPaciente" formControlName="idPaciente" class="form-select" required>
+            <option *ngFor="let paciente of pacientes" [value]="paciente.idPaciente">{{ paciente.nombre }}</option>
+          </select>
         </div>
 
         <div class="mb-3">
-          <label for="appointmentTime" class="form-label">Hora de la Cita:</label>
-          <input id="appointmentTime" type="time" formControlName="appointmentTime" class="form-control" required>
+          <label for="horario" class="form-label">Hora de la Cita:</label>
+          <input id="horario" type="time" formControlName="horario" class="form-control" required>
         </div>
 
+        <!-- Campo oculto para la fecha seleccionada -->
+        <input type="hidden" formControlName="fecha">
+
         <button type="submit" class="btn btn-primary w-100">Registrar Cita</button>
-        <button class="btn btn-primary w-100 mt-3" (click)="goBack()">Volver al Calendario</button>
+        <button type="button" class="btn btn-secondary w-100 mt-3" (click)="goBack()">Volver al Calendario</button>
       </form>
     </div>
   </div>
