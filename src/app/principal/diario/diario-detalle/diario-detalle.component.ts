@@ -18,6 +18,7 @@ export class DiarioDetalleComponent implements OnInit {
   hide = true;
   form!: FormGroup;
   fb = inject(FormBuilder);
+  idSelecct : number | undefined;
   diario!: DiariosPaciente;  // Changed to a single Entrada instead of an array
   ngOnInit(): void {
     this.obtenerDetalleDiario();
@@ -27,6 +28,7 @@ export class DiarioDetalleComponent implements OnInit {
     // Obtén el ID del parámetro de la ruta
     this.activatedRoute.paramMap.subscribe(params => {
       const id = +params.get('id')!;
+      this.idSelecct = +params.get('id')!;
       this.authService.getDiario(id).subscribe({
         next: (response) => {
           console.log('Detalle del diario:', response);
@@ -67,6 +69,6 @@ parseFecha(fechaString: string): Date {
   return fecha;
 }
   goBack() {
-    this.router.navigate(['/diario']); // Navega a la vista principal
+    this.router.navigate(['/paciente']);
   }
 }

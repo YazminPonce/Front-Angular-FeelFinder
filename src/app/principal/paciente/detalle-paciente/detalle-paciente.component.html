@@ -87,6 +87,8 @@
         <h4>Paciente</h4>
         <p><strong>Nombre:</strong> {{ paciente?.nombre + " " + paciente?.apellidoMaterno + " " + paciente?.apellidoPaterno}}</p>
         <p><strong>Edad:</strong> {{ paciente?.edad }}</p>
+        <p><strong>Ocupación:</strong> {{ paciente?.ocupacion }}</p>
+        <p><strong>Teléfono:</strong> {{ paciente?.telefono }}</p>
         <p><strong>Fecha de Registro:</strong> {{ paciente?.fechaRegistro | date: 'fullDate' }}</p>
         <button class="btn btn-warning btn-sm me-2" (click)="activarEdicion()">
           <i class="bi bi-pencil"></i> Modificar Paciente

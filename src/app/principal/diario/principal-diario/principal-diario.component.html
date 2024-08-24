@@ -11,8 +11,8 @@
       <div class="card shadow-sm mb-4">
         <div class="card-body text-center">
           <i class="bi bi-journal-text" style="font-size: 2rem; color: #6a0dad;"></i>
-          <h5 class="card-title mt-3">{{ diario.paciente.persona }}</h5>
-          <p class="card-text">{{ diario.fecha }}</p>
+          <h5 class="card-title mt-3">{{ diario.paciente.persona.nombre }}</h5>
+          <p class="card-text">{{ formatFecha(diario.fecha) }}</p>
           <p class="card-text">{{ diario.contenido }}</p>
           <a (click)="verDetalleDiario(diario.id)" class="btn btn-primary">Ver Más</a>
         </div>

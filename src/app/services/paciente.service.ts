@@ -147,5 +147,7 @@ export class PacienteService {
       const body = { Fecha: nuevaFecha, Horario: nuevaHora };
       return this.http.put<any>(`${this.apiUrl}Cita/cita/${id}/reagendar`, body);
     }
-
+    aceptarCita(citaId: string): Observable<any> {
+      return this.http.put(`${this.apiUrl}Cita/cita/${citaId}/aceptar`, {});
+    }
 }

@@ -156,4 +156,31 @@ guardarCambios(): void {
   volverALaLista(): void {
     this.router.navigate(['/paciente']);
   }
+
+
+// Método para formatear la fecha
+formatFecha(fechaString: string): string {
+  const fecha = this.parseFecha(fechaString);
+
+  if (!fecha || isNaN(fecha.getTime())) {
+    // Retorna un string vacío o un mensaje de error si la fecha no es válida
+    return 'Fecha inválida';
+  }
+
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: 'long', // "lunes"
+    day: 'numeric',  // "8"
+    month: 'long',   // "agosto"
+    year: 'numeric'  // "2024"
+  };
+
+  return new Intl.DateTimeFormat('es-ES', options).format(fecha);
+}
+
+// Método auxiliar para analizar la fecha
+parseFecha(fechaString: string): Date {
+  // Asegúrate de que la fecha esté en un formato que `Date` pueda entender
+  const fecha = new Date(fechaString);
+  return fecha;
+}
 }

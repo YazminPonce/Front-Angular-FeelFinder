@@ -37,6 +37,7 @@ export class CitasDetalleComponent implements OnInit {
   loadCitaDetails() {
     if (this.citaId) {
       this.citaService.getCitaById(this.citaId).subscribe((cita: any) => {
+        console.log(cita);
         this.citaDetails = cita;
         this.citaEstado = cita.estatus;
       });
@@ -62,4 +63,21 @@ export class CitasDetalleComponent implements OnInit {
       });
     }
   }
+
+  aceptarCita() {
+    if (this.citaId) {
+      this.citaService.aceptarCita(this.citaId).subscribe(
+        () => {
+          console.log('Cita aceptada exitosamente');
+          window.location.reload(); // Recarga la página
+          this.loadCitaDetails(); // Actualiza los detalles de la cita después de aceptarla
+        },
+        (error) => {
+          window.location.reload(); // Recarga la página
+          console.error('Error al aceptar la cita', error);
+        }
+      );
+    }
+  }
+
 }
