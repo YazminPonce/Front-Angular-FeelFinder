@@ -16,12 +16,17 @@ import { ValidationError } from '../../interfaces/validation-error';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormFieldCustomControlExample } from '../tel-input/tel-input.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [MatInputModule, MatSelectModule, MatIconModule, RouterLink, CommonModule, ReactiveFormsModule,FormFieldCustomControlExample],
+  imports: [MatInputModule, MatSelectModule, MatIconModule, RouterLink, CommonModule, ReactiveFormsModule,FormFieldCustomControlExample, MatDatepickerModule],
+  providers: [
+    provideNativeDateAdapter()
+  ],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
@@ -37,6 +42,17 @@ export class RegistroComponent {
   confirmPasswordHide: boolean = true;
   passwordHide: boolean = true;
   errors!: ValidationError[];
+
+  currentSection = 1;
+
+
+  nextSection() {
+    this.currentSection = this.currentSection+1;
+  }
+
+  previousSection() {
+    this.currentSection = this.currentSection-1;
+  }
 
 
   register() {
@@ -82,7 +98,8 @@ export class RegistroComponent {
         roles: [['profesional']],
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required]],
-        telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
+        telefono: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+        address: ['', []]
       },
       {
         validator: this.passwordMatchValidator,
@@ -92,15 +109,24 @@ export class RegistroComponent {
     // Subscribe to value changes if needed
     this.registerForm.valueChanges.subscribe(value => {
       console.log('Form value changed:', value);
+      console.log(this.registerForm.controls['telefono']);
     });
 
     this.roles$ = this.roleService.getRoles();
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
-    const password = formGroup.get('password')?.value;
-    const confirmPassword = formGroup.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { mismatch: true };
+    const password = formGroup.get('password');
+    const confirmPassword = formGroup.get('confirmPassword');
+
+    if (password && confirmPassword && password.value !== confirmPassword.value) {
+      confirmPassword.setErrors({ mismatch: true });
+    } else {
+      if (confirmPassword)
+      confirmPassword.setErrors(null); // Limpia los errores si coinciden
+    }
+
+    return null; // Este retorno es necesario para que Angular no considere este validador como fallido a nivel de formulario
   }
 
 }

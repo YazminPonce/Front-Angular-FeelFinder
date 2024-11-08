@@ -1,9 +1,14 @@
-<app-side-menu
+
+<div id="content" *ngIf="!login; else noLoginContent">
+  <app-side-menu
 *ngIf="!login"></app-side-menu>
 <!-- Page Content -->
-<div id="content">
 
   <div class="container mt-4">
     <router-outlet></router-outlet>
   </div>
 </div>
+
+<ng-template #noLoginContent>
+  <router-outlet></router-outlet>
+</ng-template>
