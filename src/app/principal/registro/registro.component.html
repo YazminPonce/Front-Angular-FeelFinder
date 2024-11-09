@@ -1,3 +1,5 @@
+<header class="app-header">  <div class="logo-container">    <img src="assets/logo.png" alt="Logo" class="logo">    <h1 class="app-title">Nombre de la Aplicación</h1>  </div></header>
+
 <div class="background">
   <div class="login-window">
           <form [formGroup]="registerForm" (ngSubmit)="register()" >
@@ -41,7 +43,7 @@
               </mat-error>
             </mat-form-field>
             </div>
-            <button mat-raised-button color="primary" (click)="nextSection()">Siguiente</button>
+            <button class="btn btn-light btn-lg" (click)="nextSection()">Siguiente</button>
           </div>
 
           <div *ngIf="currentSection === 2">
@@ -133,8 +135,8 @@
                 <label class="form-check-label" for="separadoEC">Separado</label>
               </div>
             </div>
-            <button mat-raised-button color="primary" (click)="previousSection()">Atrás</button>
-            <button mat-raised-button color="primary" (click)="nextSection()">Siguiente</button>
+            <button class="btn btn-light btn-lg" (click)="previousSection()">Atrás</button>
+            <button class="btn btn-light btn-lg" (click)="nextSection()">Siguiente</button>
           </div>
 
           <div *ngIf="currentSection === 3">
@@ -161,8 +163,8 @@
 
             <div class="d-flex justify-content-end pt-3">
               <button type="reset" class="btn btn-light btn-lg">Limpiar</button>
-              <button mat-raised-button color="primary" (click)="previousSection()">Atrás</button>
-              <button type="submit" class="btn btn-warning btn-lg ms-2" style="background-color: #6a1b9a; border-color: #6a1b9a;">Submit form</button>
+              <button class="btn btn-light btn-lg" (click)="previousSection()">Atrás</button>
+              <button type="submit" class="btn btn-warning btn-lg ms-2" style="background-color: #6a1b9a; border-color: #6a1b9a;">Registrarse</button>
             </div>
           </div>
           </form>

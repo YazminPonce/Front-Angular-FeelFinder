@@ -30,3 +30,29 @@
   text-align: center;
   margin-bottom: 1.5rem;
 }
+
+
+
+.app-header {
+  background-color: #6a1b9a; /* Color del fondo */
+  padding: 20px; /* Espaciado interno */
+  display: flex; /* Para alinear contenido */
+  align-items: center; /* Centrar verticalmente */
+  justify-content: space-between; /* Espacio entre logo y título */
+}
+
+.logo-container {
+  display: flex; /* Para alinear logo y título en línea */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.logo {
+  height: 50px; /* Altura del logo */
+  margin-right: 15px; /* Espacio entre el logo y el título */
+}
+
+.app-title {
+  color: white; /* Color del texto */
+  font-size: 24px; /* Tamaño del texto */
+  font-weight: bold; /* Negrita */
+}
